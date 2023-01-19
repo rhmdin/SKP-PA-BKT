@@ -14,10 +14,10 @@
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="email" placeholder="Masukkan NIP" />
+					<input type="text" placeholder="Masukkan NIP" required value="usn"/>
 				</div>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="password" placeholder="Masukkan Password" maxlength="20" id="password" />
+					<input type="password" placeholder="Masukkan Password" maxlength="20" id="password" required value="pw"/>
 					<i class="fa-solid fa-eye" id="eye" style="
 					position: absolute;
 					top: 51%;
@@ -27,7 +27,10 @@
 				</div>
 				<a href="{{route('iku')}}">Lupa password?</a>
 				<button style="cursor:pointer;">
-                    <a href="{{route('iku')}}" style="color:white">MASUK</a>
+                    <?php
+
+
+					?> <a href="{{route('iku')}}" style="color:white">MASUK</a>
                 </button>
 			</form>
 		</div>
