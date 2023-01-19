@@ -25,8 +25,10 @@
 					cursor: pointer;
 					color: rgb(150, 150, 150);"onclick="myFunction()""></i>
 				</div>
-				<a href="#">Lupa password?</a>
-				<button style="cursor:pointer;" >MASUK</button>
+				<a href="{{route('iku')}}">Lupa password?</a>
+				<button style="cursor:pointer;">
+                    <a href="{{route('iku')}}" style="color:white">MASUK</a>
+                </button>
 			</form>
 		</div>
 		<div class="overlay-container">
