@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts/sidebar');
+    return view('login');
 });
 
 Route::get('/indikator-kinerja',  function () {
