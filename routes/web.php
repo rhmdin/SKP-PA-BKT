@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IkuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,5 @@ Route::get('/', function () {
     return view('layouts/sidebar');
 });
 
-Route::get('/indikator-kinerja',  function () {
-    return view('iku');
-})->name('iku');
+Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
+Route::get('/rencana-strategis', [IkuController::class, 'getRenstra'])->name('renstra');
