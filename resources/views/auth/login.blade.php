@@ -10,26 +10,25 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
-			<form action="{{ route('login') }}" method="POST">
+			<form method="POST" action="{{ route('login') }}">
                 @csrf
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
-					<input id="email" type="email" class="@error('email') is-invalid @enderror " name="email" placeholder="Masukkan Email" required value="{{ old ('email') }}" autocomplete="email" autofocus/>
-                    @error('email')
+					<input id="email" placeholder="masukkan email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        @error('email')
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                        {{ $message }}
                         </span>
-                    @enderror
+                        @enderror
                 </div>
 				<div class="log-in-container" style="width: 100%;">
-					<input id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Masukkan Password" autocomplete="current-password" maxlength="20" id="password" required value="" autofocus/>
-					@error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                    <i class="fa-solid fa-eye" id="eye" style="
+					<input id="password" placeholder="masukkan password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                        </span>
+                        @enderror<i class="fa-solid fa-eye" id="eye" style="
                         position: absolute;
                         top: 51%;
                         margin-left:-8%;
@@ -37,11 +36,7 @@
                         color: rgb(150, 150, 150);"onclick="myFunction()"">
                     </i>
 				</div>
-                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Lupa password?') }}
-                                    </a>
-                                @endif
+				<a href="/indikator-kinerja">Lupa password?</a>
 				<button style="cursor:pointer;">
                     <?php
 
