@@ -26,6 +26,5 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
 Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
 Route::get('/rencana-strategis', [IkuController::class, 'getRenstra'])->name('renstra');
