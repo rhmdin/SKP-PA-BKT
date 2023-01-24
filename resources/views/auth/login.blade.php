@@ -10,21 +10,26 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
-			<form action="" method="post">
+			<form action="{{ route('login') }}" method="POST">
                 @csrf
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="email" class="@error('username') is-invalid @enderror " name="username" placeholder="Masukkan NIP" required value="{{ old ('username') }}" autofocus/>
-                    @error('username')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+					<input id="email" type="email" class="@error('email') is-invalid @enderror " name="email" placeholder="Masukkan Email" required value="{{ old ('email') }}" autocomplete="email" autofocus/>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                     @enderror
                 </div>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="password" name="password" placeholder="Masukkan Password" maxlength="20" id="password" required value="" autofocus/>
-					<i class="fa-solid fa-eye" id="eye" style="
+					<input id="password" type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Masukkan Password" autocomplete="current-password" maxlength="20" id="password" required value="" autofocus/>
+					@error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    <i class="fa-solid fa-eye" id="eye" style="
                         position: absolute;
                         top: 51%;
                         margin-left:-8%;
@@ -32,7 +37,11 @@
                         color: rgb(150, 150, 150);"onclick="myFunction()"">
                     </i>
 				</div>
-				<a href="/indikator-kinerja">Lupa password?</a>
+                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Lupa password?') }}
+                                    </a>
+                                @endif
 				<button style="cursor:pointer;">
                     <?php
 
