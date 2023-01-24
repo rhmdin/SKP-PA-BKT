@@ -10,21 +10,25 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
-			<form action="" method="post">
+			<form method="POST" action="{{ route('login') }}">
                 @csrf
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="email" class="@error('username') is-invalid @enderror " name="username" placeholder="Masukkan NIP" required value="{{ old ('username') }}" autofocus/>
-                    @error('username')
-                    <div class="invalid-feedback">
+					<input id="email" placeholder="masukkan email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
                         {{ $message }}
-                    </div>
-                    @enderror
+                        </span>
+                        @enderror
                 </div>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="password" name="password" placeholder="Masukkan Password" maxlength="20" id="password" required value="" autofocus/>
-					<i class="fa-solid fa-eye" id="eye" style="
+					<input id="password" placeholder="masukkan password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                        </span>
+                        @enderror<i class="fa-solid fa-eye" id="eye" style="
                         position: absolute;
                         top: 51%;
                         margin-left:-8%;
