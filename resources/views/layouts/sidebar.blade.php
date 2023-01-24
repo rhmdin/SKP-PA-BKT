@@ -23,20 +23,22 @@
         </div>
         <nav class="sidebar-list">
             <ul class="nav-sidebar">
-                <li class="nav-item has-treeview active">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="bx bx-book-alt"></i>
                         <p>Perencanaan</p>
                         <i class=""></i>
                     </a>
-                    <ul class="treeview">
-                        <li class="nav-item">
+                    <ul class="treeview 
+                        {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0  ? 'active' : '' }}
+                    ">
+                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'iku') === 0 ? 'active' : '' }}">
                             <a href="{{route('iku')}}" class="item-child">
                                 <p>Indikator Kinerja</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="item-child">
+                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'renstra') === 0 ? 'active' : '' }}">
+                            <a href="{{route('renstra')}}" class="item-child">
                                 <p>Rencana Strategis</p>
                             </a>
                         </li>

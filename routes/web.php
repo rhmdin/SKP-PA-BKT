@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\IkuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,12 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 
-Route::get('/indikator-kinerja',  function () {
-    return view('iku');
-})->name('iku');
 
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
+Route::get('/rencana-strategis', [IkuController::class, 'getRenstra'])->name('renstra');

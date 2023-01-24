@@ -18,6 +18,7 @@ class CreateDetailIkuTable extends Migration
             $table->foreignId('id_iku');
             $table->foreign('id_iku')->references('id')->on('iku');
             $table->text('tahun');
+            $table->text('target');
             $table->text('pihak_satu');
             $table->text('pihak_dua');
             $table->date('tanggal_ditetapkan');
