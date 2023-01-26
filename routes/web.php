@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IkuController;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,19 @@ use App\Http\Controllers\IkuController;
 |
 */
 
-// Route::get('/', function () {
-//    return view('login');
-// });
+Route::get('/', function () {
+    return view('welcome');
+ });
 
 
 
 
 Auth::routes();
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
 Route::get('/rencana-strategis', [IkuController::class, 'getRenstra'])->name('renstra');
+
+Route::get('/login', [MainController::class, 'index']);
+Route::post('/login/check', [MainController::class, 'checklogin']);
+Route::get('/logout', [MainController::class, 'logout']);

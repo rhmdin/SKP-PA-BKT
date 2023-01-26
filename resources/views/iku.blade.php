@@ -1,3 +1,5 @@
+
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -24,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             <tr class="alert">
                                 @foreach ($ikus as $iku)
                                 <td>{{ $iku->id }}</td>
@@ -49,3 +51,7 @@
     </div>
 </section>
 @endsection
+@else
+
+<script>window.location = "/login";</script>
+@endif

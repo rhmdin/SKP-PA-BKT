@@ -10,39 +10,41 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
-			<form method="POST" action="{{ route('login') }}">
+            @if(isset(Auth::user()->email))
+            <script>window.location="/main/successlogin";</script>
+           @endif
+           @if ($message = Session::get('error'))
+           <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+           </div>
+           @endif
+
+           @if ($message = Session::get('error'))
+           <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+           </div>
+           @endif
+           <form method="POST" action="{{ url('/login/check') }}">
                 @csrf
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
-					<input id="email" placeholder="masukkan email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                        {{ $message }}
-                        </span>
-                        @enderror
+					<input id="email" placeholder="masukkan email" type="email" class="" name="email"  required autocomplete="email" autofocus>
                 </div>
 				<div class="log-in-container" style="width: 100%;">
-					<input id="password" placeholder="masukkan password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                        {{ $message }}
-                        </span>
-                        @enderror<i class="fa-solid fa-eye" id="eye" style="
+					<input id="password" placeholder="masukkan password" type="password" class="" name="password" required autocomplete="current-password">
+                        <i class="fa-solid fa-eye" id="eye" style="
                         position: absolute;
-                        top: 51%;
+                        top: 52%;
                         margin-left:-8%;
                         cursor: pointer;
                         color: rgb(150, 150, 150);"onclick="myFunction()"">
                     </i>
 				</div>
-				<a href="/indikator-kinerja">Lupa password?</a>
-				<button style="cursor:pointer;">
-                    <?php
-
-
-					?> <a href="" style="color:white">MASUK</a>
-                </button>
+				{{-- <a href="/indikator-kinerja">Lupa password?</a>--}}
+				<input type="submit" name="login" style="cursor:pointer; background-color:black; color:white; width:50%; font-style:bold; border-radius: 8px; margin-top:10%" value="LOGIN">
 			</form>
 		</div>
 		<div class="overlay-container">

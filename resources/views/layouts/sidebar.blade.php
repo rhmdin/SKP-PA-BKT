@@ -29,7 +29,7 @@
                         <p>Perencanaan</p>
                         <i class=""></i>
                     </a>
-                    <ul class="treeview 
+                    <ul class="treeview
                         {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0  ? 'active' : '' }}
                     ">
                         <li class="nav-item {{ strpos(Route::currentRouteName(), 'iku') === 0 ? 'active' : '' }}">
@@ -69,7 +69,7 @@
             </ul>
         </nav>
         <div class="logout d-flex justify-content-center">
-            <a href="#" class="d-flex">
+            <a href="{{ url('/logout') }}" class="d-flex">
                 <i class="bx bx-log-out"></i>
                 <p>Logout</p>
             </a>
