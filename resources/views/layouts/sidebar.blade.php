@@ -69,12 +69,10 @@
             </ul>
         </nav>
         <div class="logout d-flex justify-content-center">
-            <button  onclick="myFunction()" style="background: none; border:none;">
-                <a href="{{ url('/logout') }}" class="d-flex"">
-                    <i class="bx bx-log-out"></i>
-                    <p>Logout</p>
-                </a>
-            </button>
+            <a href="{{ url('/logout') }}" onclick="myFunction()" class="d-flex">
+                <i class="bx bx-log-out"></i>
+                <p>Logout</p>
+            </a>
         </div>
     </div>
 
@@ -109,9 +107,9 @@
     });
     </script>
 
+
 <script>
     function myFunction() {
-      let text;
       if (confirm("Yakin mau logout?") == true) {
         window.location = '{{ url('/logout') }}'';
       }

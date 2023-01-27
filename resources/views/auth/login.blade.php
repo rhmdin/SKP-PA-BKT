@@ -10,8 +10,8 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
-            @if(isset(Auth::user()->email))
-            <script>window.location="/main/successlogin";</script>
+            @if(isset(Auth::user()->nip))
+            <script>window.location="/indikator-kinerja";</script>
            @endif
            <form method="POST" action="{{ url('/login/check') }}">
                 @csrf
@@ -27,7 +27,7 @@
                         </script>
                      <p style="text-align: start; color:red;font-size:8pt;margin-bottom:-3%; font-weight:300;">{{ $message }}</p>
                     @endif
-					<input id="email" placeholder="masukkan email" type="email" class="" name="email"  required autocomplete="email" autofocus>
+					<input id="nip" placeholder="masukkan nip" type="text" class="" name="nip"  required autocomplete="nip" autofocus>
                 </div>
 				<div class="log-in-container" style="width: 100%;">
 					<input id="password" placeholder="masukkan password" type="password" class="" name="password" required autocomplete="current-password">

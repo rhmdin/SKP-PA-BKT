@@ -16,12 +16,12 @@ class MainController extends Controller
     function checklogin(Request $request)
     {
      $this->validate($request, [
-      'email'   => 'required|email',
+      'nip'   => 'required',
       'password'  => 'required|alphaNum|min:3'
      ]);
 
      $user_data = array(
-      'email'  => $request->get('email'),
+      'nip'  => $request->get('nip'),
       'password' => $request->get('password')
      );
 
@@ -31,7 +31,7 @@ class MainController extends Controller
      }
      else
      {
-      return back()->with('error', 'Email atau password salah');
+      return back()->with('error', 'Data yang dimasukkan salah');
      }
 
     }
