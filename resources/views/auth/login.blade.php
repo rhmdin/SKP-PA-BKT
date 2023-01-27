@@ -13,36 +13,34 @@
             @if(isset(Auth::user()->email))
             <script>window.location="/main/successlogin";</script>
            @endif
-           @if ($message = Session::get('error'))
-           <div class="alert alert-danger alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $message }}</strong>
-           </div>
-           @endif
-
-           @if ($message = Session::get('error'))
-           <div class="alert alert-danger alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $message }}</strong>
-           </div>
-           @endif
            <form method="POST" action="{{ url('/login/check') }}">
                 @csrf
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
+                    @if ($message = Session::get('error'))
+                     <p style="text-align: start; color:red;font-size:8pt;margin-bottom:-3%; font-weight:300;">{{ $message }}</p>
+                    @endif
+                    @if ($message = Session::get('logout'))
+                    <script>
+                          alert("Berhasil Logout");
+                        </script>
+                     <p style="text-align: start; color:red;font-size:8pt;margin-bottom:-3%; font-weight:300;">{{ $message }}</p>
+                    @endif
 					<input id="email" placeholder="masukkan email" type="email" class="" name="email"  required autocomplete="email" autofocus>
                 </div>
 				<div class="log-in-container" style="width: 100%;">
 					<input id="password" placeholder="masukkan password" type="password" class="" name="password" required autocomplete="current-password">
-                        <i class="fa-solid fa-eye" id="eye" style="
-                        position: absolute;
-                        top: 52%;
-                        margin-left:-8%;
-                        cursor: pointer;
-                        color: rgb(150, 150, 150);"onclick="myFunction()"">
-                    </i>
+
+
 				</div>
+				<div class="log-in-container" style="width: 100%;margin-top:-3%">
+                    <input style="float:left; color:black; margin-left:-45%;" type="checkbox" class="fa-solid fa-eye" id="eye" name="password"  onclick="myFunction()">
+                    <label style="font-size: 8pt;align-items:flex-start; margin-left:-95%;" for="password">
+                        Tampilkan password
+                    </label>
+				</div>
+
 				{{-- <a href="/indikator-kinerja">Lupa password?</a>--}}
 				<input type="submit" name="login" style="cursor:pointer; background-color:black; color:white; width:50%; font-style:bold; border-radius: 8px; margin-top:10%" value="LOGIN">
 			</form>
@@ -77,6 +75,7 @@
 
 
 <script>
+
 	const passwordInput = document.querySelector("#password")
 const eye = document.querySelector("#eye")
 eye.addEventListener("click", function(){
@@ -84,6 +83,7 @@ eye.addEventListener("click", function(){
 	const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
 	passwordInput.setAttribute("type", type)
   })
+
 </script>
 
 </body>

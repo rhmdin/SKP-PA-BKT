@@ -69,10 +69,12 @@
             </ul>
         </nav>
         <div class="logout d-flex justify-content-center">
-            <a href="{{ url('/logout') }}" class="d-flex">
-                <i class="bx bx-log-out"></i>
-                <p>Logout</p>
-            </a>
+            <button  onclick="myFunction()" style="background: none; border:none;">
+                <a href="{{ url('/logout') }}" class="d-flex"">
+                    <i class="bx bx-log-out"></i>
+                    <p>Logout</p>
+                </a>
+            </button>
         </div>
     </div>
 
@@ -105,6 +107,15 @@
     $(document).ready(function() {
       $('#table_id').DataTable();
     });
+    </script>
+
+<script>
+    function myFunction() {
+      let text;
+      if (confirm("Yakin mau logout?") == true) {
+        window.location = '{{ url('/logout') }}'';
+      }
+    }
     </script>
 </body>
 

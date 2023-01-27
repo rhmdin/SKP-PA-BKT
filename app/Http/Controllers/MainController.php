@@ -44,7 +44,8 @@ class MainController extends Controller
     function logout()
     {
      Auth::logout();
-     return redirect('/login');
+        return redirect('/login')->with('logout', 'Harap login kembali untuk masuk!');
+
     }
 
 
