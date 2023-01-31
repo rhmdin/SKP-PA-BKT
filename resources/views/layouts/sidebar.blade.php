@@ -60,8 +60,8 @@
                         <p>Pengukuran</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{ strpos(Route::currentRouteName(), 'laporan') === 0 ? 'active' : '' }}">
+                    <a href="{{route('laporan')}}" class="nav-link">
                         <i class="bx bxs-report"></i>
                         <p>Laporan</p>
                     </a>

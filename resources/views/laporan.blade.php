@@ -16,13 +16,9 @@
                         <thead>
                             <tr>
                                 <th>No </th>
-                                <th>Tujuan Strategis</th>
-                                <th>Sasaran Kinerja</th>
-                                <th>Periode</th>
-                                <th>Indikator Kinerja</th>
-                                <th>Penanggung Jawab</th>
-                                <th>Target</th>
-                                <th>Opsi</th>
+                                <th>Tahun</th>
+                                <th>Last Update</th>
+                                <th>Lihat Rekapan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,17 +27,18 @@
                                 @foreach ($ikus as $iku)
                                 <td>{{ $iku->id }}</td>
                                 <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                <td>{{ $iku->sasaran->isi_sasaran }}</td>
-                                <td>{{ $iku->sasaran->periode }}</td>
-                                <td>{{ $iku->isi_iku }}</td>
-                                <td>{{ $iku->penanggung_jawab }}</td>
-                                <td>{{ $iku->target }}</td>
+                                <td></td>
                                 <td>
-                                    <a class="editb" href=""><i class='bx bx-detail' style="color: #0026be;"></i></a>
-                                    <a class="editb" href=""><i class='bx bx-edit' style="color: #e3b200;"></i></a>
-                                    <a onclick="return confirm('Anda yakin menghapus data ini ?')" class="editb"
-                                    href=""><i class='bx bx-trash' style="color: #A30D11;"></i></a></td>
-                                    @endforeach
+                                    <a href="{{route('rekapbulan')}}" style="text-decoration: none;">
+                                        <button type="button" class="btn btn-outline-danger btn-sm">Bulan</button>
+                                    </a>
+                                    <a href="{{route('rekaptriwulan')}}" style="text-decoration: none;">
+                                        <button type="button" class="btn btn-outline-warning btn-sm">Triwulan</button>
+                                    </a>
+                                    <a href="{{route('rekapsemester')}}" style="text-decoration: none;">
+                                        <button type="button" class="btn btn-outline-success btn-sm">Semester</button>
+                                    </a>
+                                @endforeach
                             </tr>
                         </tbody>
                     </table>
