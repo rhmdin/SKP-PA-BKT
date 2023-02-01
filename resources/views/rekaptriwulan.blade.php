@@ -100,5 +100,8 @@
 
 @else
 
-<script>window.location = "/login";</script>
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
 @endif
