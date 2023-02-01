@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailIku;
 use App\Models\Iku;
+use App\Models\Pengukuran;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
     public function getLap()
     {
-        $ikus = Iku::all();
-        return view('laporan', compact('ikus'));
+        $detailiku = DetailIku::all();
+        return view('laporan', compact('detailiku'));
     }
     public function getBln()
     {
-        $laporan = Iku::all();
-        return view('rekapperbulan', compact('laporan'));
+        $pengukuran = Pengukuran::all();
+        return view('rekapperbulan', compact('pengukuran'));
     }
     public function getTri()
     {

@@ -1,53 +1,71 @@
 
 @if(isset(Auth::user()->email))
-@extends('layouts.sidebar')
 
-@section('content')
-<section class="main-panel">
-    <div class="container">
-        <div class="section-title">
-            <h3 class="fw-bolder mb-4">Daftar Indikator Kinerja</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-wrap">
-                    <table class="table table-responsive-xl">
-                        <h3 class="jenis">I. Indikator Utama</h3>
-                        <thead>
-                            <tr>
-                                <th>No </th>
-                                <th>Tahun</th>
-                                <th>Last Update</th>
-                                <th>Lihat Rekapan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>Laporan</title>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+          <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+          <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+     </head>
+     <body>
 
-                            <tr class="alert">
-                                @foreach ($ikus as $iku)
-                                <td>{{ $iku->id }}</td>
-                                <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                <td></td>
-                                <td>
-                                    <a href="{{route('rekapbulan')}}" style="text-decoration: none;">
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Bulan</button>
-                                    </a>
-                                    <a href="{{route('rekaptriwulan')}}" style="text-decoration: none;">
-                                        <button type="button" class="btn btn-outline-warning btn-sm">Triwulan</button>
-                                    </a>
-                                    <a href="{{route('rekapsemester')}}" style="text-decoration: none;">
-                                        <button type="button" class="btn btn-outline-success btn-sm">Semester</button>
-                                    </a>
-                                @endforeach
-                            </tr>
-                        </tbody>
-                    </table>
+        @extends('layouts.sidebar')
+
+        @section('content')
+        <section class="main-panel">
+            <div class="container">
+                <div class="section-title"  style="margin-top: 1%; margin-bottom:4%;">
+                    <h1 class="fw-bolder mb-4">Daftar Laporan Rekapitulasi Pengukuran</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrap">
+                            <table class="table table-responsive-xl table-hover table-bordered" id="employee_data"  >
+                                <thead style="background: rgba(255, 255, 255, 0.856);">
+                                    <tr>
+                                        <th>No </th>
+                                        <th style="width: 80px; min-width:10px;">Tahun</th>
+                                        <th style="min-width: 100px; width:150px;">Last Update</th>
+                                        <th style="min-width: 100px; width:240px;">Keterangan</th>
+                                        <th style="min-width: 100px; width:220px;">Lihat Rekapan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="alert">
+                                        <?php $no=1 ?>
+                                        @foreach ($detailiku as $lap)
+                                        <td>{{ $no=1 }}</td>
+                                        <td>{{ $lap->tahun}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-danger btn-lg" onClick="window.open('{{route('rekapbulan')}}');">Bulan</button>
+                                            <button type="button" class="btn btn-outline-warning btn-lg" onClick="window.open('{{route('rekaptriwulan')}}');">Triwulan</button>
+                                            <button type="button" class="btn btn-outline-success btn-lg" onClick="window.open('{{route('rekapsemester')}}');">Semester</button>
+                                        <?php $no++ ?>
+                                        @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-@endsection
+        </section>
+        @endsection
+     </body>
+</html>
+
+<script>
+    $(document).ready(function(){
+         $('#employee_data').DataTable();
+    });
+    </script>
 @else
 
 <script>window.location = "/login";</script>

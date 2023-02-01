@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan</title>
+    <title>Rekap PerBulan</title>
     <link rel="stylesheet" href="{{ asset('/css/laporan.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -93,12 +93,13 @@
                                 </thead>
                                 <tbody style="background: white; ">
                                     <tr>
-                                        @foreach ($laporan as $iku)
+                                        <?php $no=1 ?>
+                                        @foreach ($pengukuran as $ukur)
                                         <tr>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                            <td>{{ $iku->sasaran->isi_sasaran }}</td>
-                                            <td>{{ $iku->isi_iku }}</td>
+                                            <td>{{ $no }}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td>1</td>
                                             <td>1</td>
                                             <td>1</td>
@@ -136,6 +137,7 @@
                                             <td>1</td>
                                             <td>1</td>
                                         </tr>
+                                        <?php $no++ ?>
                                         @endforeach
                                 </tbody>
                             </table>
