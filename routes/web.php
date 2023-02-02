@@ -43,3 +43,4 @@ Route::put('/rencana-kinerja-tahunan/{rkt}', [DetailIkuController::class, 'updat
 Route::get('/pengukuran-kinerja', [PengukuranController::class, 'getPeng'])->name('pengukuran');
 Route::get('/pengukuran-kinerja/tambah', [PengukuranController::class, 'getIku'])->name('tambahPeng');
 Route::post('/pengukuran-kinerja/tambah', [PengukuranController::class, 'store']);
+Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');

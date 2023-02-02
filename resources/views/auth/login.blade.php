@@ -10,35 +10,39 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
-			<form action="" method="post">
+            @if(isset(Auth::user()->nip))
+            <script>window.location="/indikator-kinerja";</script>
+           @endif
+           <form method="POST" action="{{ url('/login/check') }}">
                 @csrf
 				<h1>Login</h1>
                 <br>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="email" class="@error('username') is-invalid @enderror " name="username" placeholder="Masukkan NIP" required value="{{ old ('username') }}" autofocus/>
-                    @error('username')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    @if ($message = Session::get('error'))
+                     <p style="text-align: start; color:red;font-size:8pt;margin-bottom:-3%; font-weight:300;">{{ $message }}</p>
+                    @endif
+                    @if ($message = Session::get('logout'))
+                    <script>
+                          alert("Berhasil Logout");
+                        </script>
+                     <p style="text-align: start; color:red;font-size:8pt;margin-bottom:-3%; font-weight:300;">{{ $message }}</p>
+                    @endif
+					<input id="nip" placeholder="masukkan nip" type="text" class="" name="nip"  required autocomplete="nip" autofocus>
                 </div>
 				<div class="log-in-container" style="width: 100%;">
-					<input type="password" name="password" placeholder="Masukkan Password" maxlength="20" id="password" required value="" autofocus/>
-					<i class="fa-solid fa-eye" id="eye" style="
-                        position: absolute;
-                        top: 51%;
-                        margin-left:-8%;
-                        cursor: pointer;
-                        color: rgb(150, 150, 150);"onclick="myFunction()"">
-                    </i>
+					<input id="password" placeholder="masukkan password" type="password" class="" name="password" required autocomplete="current-password">
+
+
 				</div>
-				<a href="/indikator-kinerja">Lupa password?</a>
-				<button style="cursor:pointer;">
-                    <?php
+				<div class="log-in-container" style="width: 100%;margin-top:-3%">
+                    <input style="float:left; color:black; margin-left:-45%;" type="checkbox" class="fa-solid fa-eye" id="eye" name="password"  onclick="myFunction()">
+                    <label style="font-size: 8pt;align-items:flex-start; margin-left:-95%;" for="password">
+                        Tampilkan password
+                    </label>
+				</div>
 
-
-					?> <a href="" style="color:white">MASUK</a>
-                </button>
+				{{-- <a href="/indikator-kinerja">Lupa password?</a>--}}
+				<input type="submit" name="login" style="cursor:pointer; background-color:black; color:white; width:50%; font-style:bold; border-radius: 8px; margin-top:10%" value="LOGIN">
 			</form>
 		</div>
 		<div class="overlay-container">
@@ -71,6 +75,7 @@
 
 
 <script>
+
 	const passwordInput = document.querySelector("#password")
 const eye = document.querySelector("#eye")
 eye.addEventListener("click", function(){
@@ -78,6 +83,7 @@ eye.addEventListener("click", function(){
 	const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
 	passwordInput.setAttribute("type", type)
   })
+
 </script>
 
 </body>

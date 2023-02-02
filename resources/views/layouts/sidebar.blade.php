@@ -62,8 +62,8 @@
                         <p>Pengukuran</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{ strpos(Route::currentRouteName(), 'laporan') === 0 ? 'active' : '' }}">
+                    <a href="{{route('laporan')}}" class="nav-link">
                         <i class="bx bxs-report"></i>
                         <p>Laporan</p>
                     </a>
@@ -71,7 +71,7 @@
             </ul>
         </nav>
         <div class="logout d-flex justify-content-center">
-            <a href="#" class="d-flex">
+            <a onclick="myFunction();" class="d-flex" style="cursor: pointer;">
                 <i class="bx bx-log-out"></i>
                 <p>Logout</p>
             </a>
@@ -103,6 +103,15 @@
       $('#table_id2').DataTable();
 
     });
+    </script>
+
+
+<script>
+    function myFunction() {
+      if (confirm("Yakin mau logout?") == true) {
+        window.location = '{{ url('/logout') }}';
+      };
+    };
     </script>
 </body>
 
