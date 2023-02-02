@@ -461,7 +461,7 @@ table.dataTable td {
     float: left;
 }
 .dataTables_wrapper .dataTables_length select {
-    border: 1px solid #624de3;
+    border: 1px solid #006aff;
     border-radius: 3px;
     padding: 5px;
     background-color: transparent;
@@ -472,7 +472,7 @@ table.dataTable td {
     text-align: right;
 }
 .dataTables_wrapper .dataTables_filter input {
-    border: 1px solid #624de3;
+    border: 1px solid #006aff;
     border-radius: 3px;
     padding: 5px;
     background-color: transparent;

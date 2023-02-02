@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/css/sidebar.css') }}" />
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/css/table.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/form.css') }}" />
     <link rel="stylesheet" href="{{ asset('/css/datatables.min.css') }}">
 
 </head>
@@ -18,44 +19,45 @@
 <body>
     <div class="sidebar d-flex flex-column align-items-lg-stretch">
         <div class="logo d-flex flex-row">
-            <img src="img/Logo_pta_padang.png" alt="" />
+            <img src="img/Logo_pa_bkt.png" alt="" />
             <h1 class="logo-text">Pengadilan Agama Bukittinggi</h1>
         </div>
         <nav class="sidebar-list">
             <ul class="nav-sidebar">
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0 ? 'active' : '' }}
+                    ">
                         <i class="bx bx-book-alt"></i>
                         <p>Perencanaan</p>
                         <i class=""></i>
                     </a>
                     <ul class="treeview 
-                        {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0  ? 'active' : '' }}
+                        {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0? 'active' : '' }}
                     ">
-                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'iku') === 0 ? 'active' : '' }}">
+                        <li class="mt-2 nav-item {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 ? 'child-active' : '' }}">
                             <a href="{{route('iku')}}" class="item-child">
                                 <p>Indikator Kinerja</p>
                             </a>
                         </li>
-                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'renstra') === 0 ? 'active' : '' }}">
+                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'renstra') === 0 ? 'child-active' : '' }}">
                             <a href="{{route('renstra')}}" class="item-child">
                                 <p>Rencana Strategis</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="item-child">
+                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0 ? 'child-active' : '' }}">
+                            <a href="{{route('rkt')}}" class="item-child">
                                 <p>RKT</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="item-child">
+                        <li class="nav-item {{ strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 ? 'child-active' : '' }}">
+                            <a href="{{route('pk')}}" class="item-child">
                                 <p>Perjanjian Kinerja</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
+                <li class="nav-item {{ strpos(Route::currentRouteName(), 'pengukuran') === 0 ? 'active' : '' }}">
+                    <a href="{{route('pengukuran')}}" class="nav-link">
                         <i class="bx bx-objects-vertical-bottom"></i>
                         <p>Pengukuran</p>
                     </a>
@@ -92,18 +94,14 @@
         });
     }
 
-    var item = document.getElementsByClassName("active");
-    const itemList = document.getElementsByClassName("nav-sidebar");
-
-    itemList.addEventListener("click", () => {
-        this.classList.add("active");
-        item.removeClass("active");
-    });
+    
     </script>
 
     <script type="text/javascript">
     $(document).ready(function() {
       $('#table_id').DataTable();
+      $('#table_id2').DataTable();
+
     });
     </script>
 </body>

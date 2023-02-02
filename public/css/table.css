@@ -2,6 +2,8 @@
 
 section .container {
     margin: 30px 0;
+    max-width: 1220px;
+    width: 1170px;
 }
 div .table-wrap {
     border-collapse: collapse;
@@ -12,9 +14,11 @@ div .table-wrap {
     width: 100%;
     -webkit-box-shadow: 0 5px 12px -12px rgb(0 0 0 / 29%);
     -moz-box-shadow: 0 5px 12px -12px rgba(0, 0, 0, 0.29);
-    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 6%);
+    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 10%);
     padding: 20px;
     margin: 10px auto;
+    background-color: #ffff;
+    border-radius: 5px;
 }
 .table-wrap .table tbody tr {
     margin-bottom: 10px;
@@ -28,11 +32,12 @@ div .table-wrap {
     vertical-align: middle;
     font-family: "Inter";
     font-weight: bold;
+    text-align: center;
 }
 .table-wrap .table tbody td {
     border: none;
-    padding: 18px;
-    font-size: 14px;
+    padding: 10px 7px;
+    font-size: 12px;
     vertical-align: middle;
     font-family: "Inter";
     font-weight: 400;
@@ -44,7 +49,6 @@ div .table-wrap {
     margin-left: 10px;
 }
 th {
-    text-align: center;
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
@@ -61,21 +65,19 @@ th {
 }
 
 .add1 {
-    padding: 10px;
+    padding: 13px 30px;
     text-align: center;
     gap: 8px;
     text-decoration: none;
     border: none;
     color: #fff;
-    background: #624de3;
-    border-radius: 10px;
+    background: #006aff;
+    border-radius: 20px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 1;
-    width: 40px;
-    height: 40px;
 }
 .add1 a {
     text-decoration: none;
@@ -91,7 +93,7 @@ th {
     text-decoration: none;
     border: none;
     color: #fff;
-    background: #624de3;
+    background: #006aff;
     border-radius: 18px;
     font-family: "Inter";
     font-style: normal;
@@ -116,7 +118,7 @@ button i {
 }
 button:hover {
     text-decoration: none;
-    background-color: #372f68;
+    background-color: #0e1574;
     transition: ease-in 0.2s;
 }
 
@@ -126,4 +128,12 @@ button:hover {
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
+}
+
+.button-add {
+    justify-content: end;
+    display: flex;
+}
+div table tr .opsi {
+    width: 77px;
 }

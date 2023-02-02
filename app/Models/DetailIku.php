@@ -10,6 +10,7 @@ class DetailIku extends Model
     use HasFactory;
 
     protected $table = 'detail_iku';
+    protected $fillable = ['id_iku', 'tahun', 'target', 'pihak_satu', 'pihak_dua', 'tanggal_ditetapkan'];
 
     public function iku()
     {
@@ -18,6 +19,6 @@ class DetailIku extends Model
 
     public function pengukuran()
     {
-        return $this->hasMany(Pengukuran::class);
+        return $this->hasMany(Pengukuran::class, 'id_detail', 'id');
     }
 }

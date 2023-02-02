@@ -10,6 +10,8 @@ class Iku extends Model
     use HasFactory;
 
     protected $table = 'iku';
+    protected $fillable = ['id_sasaran', 'jenis', 'isi_iku', 'penanggung_jawab', 'target', 'sumber_data']
+;
 
     public function sasaran()
     {
