@@ -5,6 +5,10 @@ use App\Http\Controllers\PengukuranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IkuController;
 
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +21,7 @@ use App\Http\Controllers\IkuController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth/login');
 });
 
 Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
@@ -44,3 +48,19 @@ Route::get('/pengukuran-kinerja', [PengukuranController::class, 'getPeng'])->nam
 Route::get('/pengukuran-kinerja/tambah', [PengukuranController::class, 'getIku'])->name('tambahPeng');
 Route::post('/pengukuran-kinerja/tambah', [PengukuranController::class, 'store']);
 Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
+
+
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
+Route::get('/rencana-strategis', [IkuController::class, 'getRenstra'])->name('renstra');
+Route::get('/laporan', [LaporanController::class, 'getLap'])->name('laporan');
+Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
+Route::get('/laporan/rekap/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
+Route::get('/laporan/rekap/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
+
+Route::get('/login', [MainController::class, 'index']);
+Route::post('/login/check', [MainController::class, 'checklogin']);
+Route::get('/logout', [MainController::class, 'logout']);

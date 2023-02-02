@@ -1,3 +1,4 @@
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -37,7 +38,7 @@
                         @endphp
                             @foreach ($ikus as $iku)
                             @if ($iku->jenis == 'u')
-                            
+
                             <tr class="alert">
                                 <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
@@ -114,5 +115,3 @@
     confirm("Harap Login Dahulu!");
 </script>
 @endif
-@else
-@else

@@ -32,63 +32,89 @@
                                     vertical-align: middle; font-size:10pt; font-family:'Times New Roman', Times, serif; border-color:black; width:100%;">
                                 <thead style="background: white; ">
                                     <tr>
-                                        <th rowspan="3">No</th>
-                                        <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
-                                        <th rowspan="3">Indikator Kinerja</th>
-                                        <th rowspan="3">Target</th>
+                                        <th rowspan="4">No</th>
+                                        <th rowspan="4" style="width: 10cm;" >Sasaran Strategis</th>
+                                        <th rowspan="4">Indikator Kinerja</th>
+                                        <th rowspan="4">Target</th>
                                         <th colspan="48">Realisasi per Bulan</th>
                                     </tr>
                                     <tr>
-                                        <th colspan="3">Januari</th>
-                                        <th colspan="3">Februari</th>
-                                        <th colspan="3">Maret</th>
-                                        <th colspan="3">April</th>
-                                        <th colspan="3">Mei</th>
-                                        <th colspan="3">Juni</th>
-                                        <th colspan="3">Juli</th>
-                                        <th colspan="3">Agustus</th>
-                                        <th colspan="3">September</th>
-                                        <th colspan="3">Oktober</th>
-                                        <th colspan="3">November</th>
-                                        <th colspan="3">Desember</th>
+                                        <th colspan="4">Januari</th>
+                                        <th colspan="4">Februari</th>
+                                        <th colspan="4">Maret</th>
+                                        <th colspan="4">April</th>
+                                        <th colspan="4">Mei</th>
+                                        <th colspan="4">Juni</th>
+                                        <th colspan="4">Juli</th>
+                                        <th colspan="4">Agustus</th>
+                                        <th colspan="4">September</th>
+                                        <th colspan="4">Oktober</th>
+                                        <th colspan="4">November</th>
+                                        <th colspan="4">Desember</th>
                                     </tr>
                                     <tr>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        <th colspan="2">Input</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
+                                        <th>Isi Input</th>
+                                        <th>Angka Input</th>
                                     </tr>
                                 </thead>
                                 <tbody style="background: white; ">
@@ -96,46 +122,59 @@
                                         <?php $no=1 ?>
                                         @foreach ($pengukuran as $ukur)
                                         <tr>
-                                            <td>{{ $no }}</td>
+                                            <td rowspan="2">{{ $no }}</td>
+                                            <td rowspan="2">{{ $ukur->detailIku->iku->sasaran->isi_sasaran }}</td>
+                                            <td rowspan="2">{{ $ukur->detailIku->iku->isi_iku }}</td>
+                                            <td rowspan="2">{{ $ukur->detailIku->iku->target }}%</td>
                                             <td></td>
                                             <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
                                             <td></td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100  }}%</td>
+                                            <td>{{ (( ( ( ($ukur->input_satu) / ( $ukur->input_dua ) ) * 100 ) / ($ukur->detailIku->iku->target) ) * 100 )}}%</td>
+                                            
                                         </tr>
                                         <?php $no++ ?>
                                         @endforeach
