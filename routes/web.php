@@ -54,13 +54,10 @@ Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/indikator-kinerja', [IkuController::class, 'getIku'])->name('iku');
-Route::get('/rencana-strategis', [IkuController::class, 'getRenstra'])->name('renstra');
 Route::get('/laporan', [LaporanController::class, 'getLap'])->name('laporan');
-Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
-Route::get('/laporan/rekap/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
-Route::get('/laporan/rekap/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
-
+Route::get('/laporan/rekap/{tahun}/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
+Route::get('/laporan/rekap/{tahun}/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
+Route::get('/laporan/rekap/{tahun}/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
 Route::get('/login', [MainController::class, 'index']);
 Route::post('/login/check', [MainController::class, 'checklogin']);
 Route::get('/logout', [MainController::class, 'logout']);
