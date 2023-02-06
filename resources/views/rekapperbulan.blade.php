@@ -1,4 +1,7 @@
-
+<?php
+    use App\Models\InputIku;
+    use App\Models\Pengukuran;
+?>
 @if(isset(Auth::user()->email))
 <!doctype html>
 <html lang="en">
@@ -13,7 +16,7 @@
     </head>
     <body style="margin:1%; margin-right:10%;">
 
-        <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja per Bulan Tahun 2023</h3>
+        <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja per Bulan Tahun {{ $tahun }}</h3>
 
         <div class="row" style="margin-top:5%">
             <div class="col-md-12">
@@ -36,109 +39,53 @@
                                         <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
                                         <th rowspan="3">Indikator Kinerja</th>
                                         <th rowspan="3">Target</th>
-                                        <th colspan="48">Realisasi per Bulan</th>
+                                        <th rowspan="3">Keterangan Input</th>
+                                        <th colspan="<?php echo 3 * $jmlbln ?>">Realisasi per Bulan</th>
                                     </tr>
                                     <tr>
-                                        <th colspan="3">Januari</th>
-                                        <th colspan="3">Februari</th>
-                                        <th colspan="3">Maret</th>
-                                        <th colspan="3">April</th>
-                                        <th colspan="3">Mei</th>
-                                        <th colspan="3">Juni</th>
-                                        <th colspan="3">Juli</th>
-                                        <th colspan="3">Agustus</th>
-                                        <th colspan="3">September</th>
-                                        <th colspan="3">Oktober</th>
-                                        <th colspan="3">November</th>
-                                        <th colspan="3">Desember</th>
+                                        @foreach ($ukur as $bulan)
+                                        <th colspan="3">{{ $bulan->bulan }}</th>
+                                        @endforeach
                                     </tr>
                                     <tr>
+                                        @foreach ($ukur as $bulan)
                                         <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
+                                        <th rowspan="2">Realisasi</th>
+                                        <th rowspan="2">Capaian</th>
+                                        @endforeach
                                     </tr>
                                 </thead>
                                 <tbody style="background: white; ">
+                                    <?php
+                                        $no=1;
+                                    ?>
+                                    @foreach ($detailiku as $detiku)
                                     <tr>
-                                        <?php $no=1 ?>
-                                        @foreach ($pengukuran as $ukur)
                                         <tr>
-                                            <td>{{ $no }}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
+                                            <td rowspan="2">{{ $no }}</td>
+                                            <td rowspan="2">{{ $detiku->iku->sasaran->isi_sasaran }}</td>
+                                            <td rowspan="2">{{ $detiku->iku->isi_iku }}</td>
+                                            <td rowspan="2">{{ $detiku->iku->target }}%</td>
+                                            <?php
+                                                $id_iku = $detiku->id_iku;
+                                                $input = InputIku::where('id_iku', $id_iku)->get();
+                                            ?>
+                                            <td>{{ $input[0]->ket_input }}</td>
+                                            @foreach($ukur as $ukur)
+                                                <td>{{ $ukur->input_satu }}</td>
+                                                <td rowspan="2">{{ $ukur->realisasi }}</td>
+                                                <td rowspan="2">{{ $ukur->capaian }}</td>
+                                            @endforeach
                                         </tr>
-                                        <?php $no++ ?>
-                                        @endforeach
+                                        <tr>
+                                            <td>{{ $input[1]->ket_input }}</td>
+                                            @foreach($ukur2 as $ukur2)
+                                                <td>{{ $ukur2->input_dua }}</td>
+                                            @endforeach
+                                        </tr>
+                                    </tr>
+                                    <?php $no++ ?>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <script>

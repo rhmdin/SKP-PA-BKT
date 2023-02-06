@@ -16,4 +16,5 @@ class Pengukuran extends Model
     {
         return $this->belongsTo(DetailIku::class, 'id_detail', 'id');
     }
+    
 }

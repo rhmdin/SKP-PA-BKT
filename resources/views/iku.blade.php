@@ -1,4 +1,5 @@
 
+>>>>>>> 1e022049d6858c421f5a65f456e60c9a87ef8b6f
 @if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 

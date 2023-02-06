@@ -22,4 +22,9 @@ class Iku extends Model
     {
         return $this->hasMany(DetailIku::class, 'id_iku', 'id');
     }
+
+    public function inputIku()
+    {
+        return $this->hasMany(InputIku::class, 'id_iku', 'id');
+    }
 }

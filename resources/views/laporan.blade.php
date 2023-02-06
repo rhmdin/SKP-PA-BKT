@@ -35,21 +35,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1 ?>
+                                    @foreach ($detailiku as $lap)
 
                                     <tr class="alert">
-                                        <?php $no=1 ?>
-                                        @foreach ($detailiku as $lap)
                                         <td>{{ $no=1 }}</td>
                                         <td>{{ $lap->tahun}}</td>
                                         <td></td>
                                         <td></td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-danger btn-lg" onClick="window.open('{{route('rekapbulan')}}');">Bulan</button>
-                                            <button type="button" class="btn btn-outline-warning btn-lg" onClick="window.open('{{route('rekaptriwulan')}}');">Triwulan</button>
-                                            <button type="button" class="btn btn-outline-success btn-lg" onClick="window.open('{{route('rekapsemester')}}');">Semester</button>
+                                            <?php $tahun = $lap->tahun?>
+                                            <button type="button" class="btn btn-outline-danger btn-lg" onClick="window.open('{{route('rekapbulan', $tahun)}}');">Bulan</button>
+                                            <button type="button" class="btn btn-outline-warning btn-lg" onClick="window.open('{{route('rekaptriwulan', $tahun)}}');">Triwulan</button>
+                                            <button type="button" class="btn btn-outline-success btn-lg" onClick="window.open('{{route('rekapsemester', $tahun)}}');">Semester</button>
                                         <?php $no++ ?>
-                                        @endforeach
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -8,6 +8,10 @@ use App\Http\Controllers\IkuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\LaporanController;
 
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +25,11 @@ use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('auth/login');
+<<<<<<< HEAD
  });
+=======
+});
+>>>>>>> 1e022049d6858c421f5a65f456e60c9a87ef8b6f
 
 
 
