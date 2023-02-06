@@ -54,4 +54,57 @@ class PengukuranController extends Controller
 
         return back()->withInput();
     }
+
+    public function edit(Pengukuran $peng)
+    {
+        $ikus = DetailIku::all();
+        $data = [
+            'peng' => $peng,
+            'iku' => $ikus
+        ];
+        //dd($data['iku']->id);
+        return view('editPeng', compact('data'));
+    }
+
+    public function update(Request $request, Pengukuran $peng)
+    {
+        $query = $request->id_detail;
+        $iku = DetailIku::where('id', $query)->get('target');
+
+        $target = $iku[0]->target;
+
+        $realisasi = $request->realisasi;
+
+        (string)$realisasi = round(((int)$request->input_satu / (int)$request->input_dua)*100);
+       
+
+        (string)$capaian = round(((int)$realisasi / (int)$target)*100);
+
+        $request['capaian'] = $capaian;
+        $request['realisasi'] = $realisasi;
+
+        // validasi inputan
+        $validated = $request->validate([
+            'id_detail' => 'required',
+            'bulan' => 'required',
+            'input_satu' => 'required',
+            'input_dua' => 'required',
+            'sumber_data' => 'required',
+            'realisasi' => 'required',  
+            'capaian' => 'required' 
+        ]);
+
+        $peng->update($validated);
+
+        $pk = Iku::all();
+        return redirect('/pengukuran-kinerja');
+    }
+
+    public function destroy(Pengukuran $peng)
+    {
+        $peng->delete();
+
+        return redirect('/pengukuran-kinerja');
+    }
+
 }

@@ -1,3 +1,5 @@
+
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -114,5 +116,3 @@
     confirm("Harap Login Dahulu!");
 </script>
 @endif
-@else
-@else
