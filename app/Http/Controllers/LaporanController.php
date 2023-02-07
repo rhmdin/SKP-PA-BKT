@@ -12,21 +12,19 @@ class LaporanController extends Controller
 {
     public function getLap()
     {
-        $detailiku = DetailIku::groupBy('tahun')->get();
+        $detailiku = DetailIku::all();
         return view('laporan', compact('detailiku'));
     }
-
     public function getBln($tahun)
     {
         $tahun = $tahun;
-        $jml_dtl = DetailIku::where('tahun', $tahun)->count();
-        if($jml_dtl > 0){
-            $detail = DetailIku::where('tahun', $tahun)->get();
-        }
-        else{
-            $detail = 0;
-        }
-        return view('rekapperbulan',compact('tahun','detail','jml_dtl'));
+        $detailiku = DetailIku::where('tahun', $tahun)->get();
+        $id_detiku = $detailiku[0]->id;
+        $jmlbln = Pengukuran::where('id_detail',$id_detiku)->count();
+        $ukur = Pengukuran::where('id_detail',$id_detiku)->get();
+        $ukur2 = $ukur;
+        $ukur3 = $ukur;
+        return view('rekapperbulan',compact('tahun','detailiku','jmlbln','id_detiku','ukur','ukur2','ukur3'));
     }
 
     public function getTri($tahun)
