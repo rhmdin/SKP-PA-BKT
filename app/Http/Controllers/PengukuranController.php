@@ -24,14 +24,13 @@ class PengukuranController extends Controller
     public function store(Request $request)
     {
         $query = $request->id_detail;
-        $iku = DetailIku::where('id', $query)->get('target');
-
-        $target = $iku[0]->target;
+        $id_iku = DetailIku::where('id', $query)->get('id_iku');
+        $target = Iku::where('id', $id_iku)->get('target');
 
         $realisasi = $request->realisasi;
 
         (string)$realisasi = round(((int)$request->input_satu / (int)$request->input_dua)*100);
-       
+
 
         (string)$capaian = round(((int)$realisasi / (int)$target)*100);
 
@@ -44,8 +43,8 @@ class PengukuranController extends Controller
             'input_satu' => 'required',
             'input_dua' => 'required',
             'sumber_data' => 'required',
-            'realisasi' => 'required',  
-            'capaian' => 'required'  
+            'realisasi' => 'required',
+            'capaian' => 'required'
         ]);
 
 
@@ -54,6 +53,7 @@ class PengukuranController extends Controller
 
         return back()->withInput();
     }
+<<<<<<< Updated upstream
 
     public function edit(Pengukuran $peng)
     {
@@ -108,3 +108,6 @@ class PengukuranController extends Controller
     }
 
 }
+=======
+}
+>>>>>>> Stashed changes
