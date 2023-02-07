@@ -32,6 +32,7 @@ class PengukuranController extends Controller
         (string)$realisasi = round(((int)$request->input_satu / (int)$request->input_dua)*100);
 
 
+
         (string)$capaian = round(((int)$realisasi / (int)$target)*100);
 
         $request['capaian'] = $capaian;

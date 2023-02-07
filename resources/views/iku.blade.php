@@ -1,3 +1,5 @@
+
+>>>>>>> 1e022049d6858c421f5a65f456e60c9a87ef8b6f
 @if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
@@ -38,7 +40,7 @@
                         @endphp
                             @foreach ($ikus as $iku)
                             @if ($iku->jenis == 'u')
-
+                            
                             <tr class="alert">
                                 <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
