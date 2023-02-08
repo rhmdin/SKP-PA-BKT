@@ -14,7 +14,7 @@ use App\Models\Pengukuran;
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="{{ asset('/js/exportexcel.js') }}"></script>
     </head>
-    <body style="margin:1%; margin-right:10%;">
+    <body style="margin:1%; ">
 
         <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja per Semester Tahun 2023</h3>
 
@@ -29,22 +29,22 @@ use App\Models\Pengukuran;
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-wrap">
-                            <table class="table table-bordered" id="tahunan"
+                            <table class="table table-bordered" id="akumulatif"
                                     style="margin-top:2%;background: white;
                                     text-align: center;
                                     vertical-align: middle; font-size:10pt; font-family:'Times New Roman', Times, serif; border-color:black; width:100%;">
                                 <thead style="background: white; ">
                                     <tr>
                                         <th rowspan="3">No</th>
-                                        <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
-                                        <th rowspan="3">Indikator Kinerja</th>
+                                        <th rowspan="3" style="width:35%;" >Sasaran Strategis</th>
+                                        <th rowspan="3" style="width:35%;">Indikator Kinerja</th>
                                         <th rowspan="3">Target</th>
-                                        <th rowspan="3">Keterangan Input</th>
+                                        <th rowspan="3" style="width:50%;">Keterangan Input</th>
                                         <th colspan="6">Realisasi Akumulatif per Semester</th>
                                     </tr>
                                     <tr>
-                                        <th colspan="3">Semester I (Januari-Juni)</th>
-                                        <th colspan="3">Semester II (Januari-Desember)</th>
+                                        <th colspan="3" style="width:20%;">Semester I (Januari-Juni)</th>
+                                        <th colspan="3" style="width:20%;">Semester II (Januari-Desember)</th>
                                     </tr>
                                     <tr>
                                             <th>Input</th>
@@ -172,7 +172,7 @@ use App\Models\Pengukuran;
                             <script>
                                 document.getElementById('exportexcel').addEventListener('click', function(){
                                     var table2excel = new Table2Excel();
-                                    table2excel.export(document.querySelectorAll("#tahunan"));
+                                    table2excel.export(document.querySelectorAll("#akumulatif"));
 
                                 });
 
