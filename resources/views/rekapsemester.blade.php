@@ -81,31 +81,38 @@ use App\Models\Pengukuran;
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
-                                                        $bulan = 1;
-                                                        $rata2input1=0;
-                                                        $rata2real=0;
-                                                        $rata2capai=0;
+                                                        $bulan1 = 1;
+                                                        $rata2input11=0;
+                                                        $rata2real1=0;
+                                                        $rata2capai1=0;
+                                                        $bulan2 = 1;
+                                                        $rata2input12=0;
+                                                        $rata2real2=0;
+                                                        $rata2capai2=0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
+                                                            @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
                                                             @php
-                                                                $rata2input1 = (($rata2input1 + $ukur->input_satu) / ($bulan));
-                                                                $rata2real = (($rata2real + $ukur->realisasi) / ($bulan));
-                                                                $rata2capai = (($rata2capai + $ukur->capaian) / ($bulan));
-                                                                $bulan++;
+                                                                $rata2input11 = (($rata2input11 + $ukur->input_satu) / ($bulan1));
+                                                                $rata2real1 = (($rata2real1 + $ukur->realisasi) / ($bulan1));
+                                                                $rata2capai1 = (($rata2capai1 + $ukur->capaian) / ($bulan1));
+                                                                $bulan1++;
                                                             @endphp
+                                                            @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
+                                                            @php
+                                                                $rata2input12 = (($rata2input12 + $ukur->input_satu) / ($bulan2));
+                                                                $rata2real2 = (($rata2real2 + $ukur->realisasi) / ($bulan2));
+                                                                $rata2capai2 = (($rata2capai2 + $ukur->capaian) / ($bulan2));
+                                                                $bulan2++;
+                                                            @endphp
+                                                            @endif
                                                     @endforeach
-                                                    <td>{{ $rata2input1 }}</td>
-                                                    <td rowspan="2">{{ $rata2real }}%</td>
-                                                    <td rowspan="2">{{ $rata2capai }}%</td>
-                                                    @php
-                                                        $sisabln = 12 - $bulan;
-                                                    @endphp
-                                                    @if($sisabln > 6){
-                                                            <td> - </td>
-                                                            <td rowspan="2"> - </td>
-                                                            <td rowspan="2"> - </td>
-                                                    }
-                                                    @endif
+                                                    <td>{{ $rata2input11 }}</td>
+                                                    <td rowspan="2">%</td>
+                                                    <td rowspan="2">%</td>
+                                                    <td>{{ $rata2input12 }}</td>
+                                                    <td rowspan="2">%</td>
+                                                    <td rowspan="2">%</td>
                                                 @else
                                                     @for ($i=1;$i<=2;$i++){
                                                         <td>-</td>
@@ -127,19 +134,32 @@ use App\Models\Pengukuran;
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
-                                                    $bulan = 1;
-                                                    $rata2input2=0;
+                                                    $bulan1 = 1;
+                                                    $rata2input21=0;
+                                                    $bulan2 = 1;
+                                                    $rata2input22=0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
-                                                            @php
-                                                                $rata2input2 = (($rata2input2 + $ukur->input_dua) / ($bulan));
-                                                                $bulan++;
-                                                            @endphp
-                                                                <td>{{ $rata2input2 }}</td>
+                                                        @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
+                                                        @php
+                                                            $rata2input21 = (($rata2input21 + $ukur->input_dua) / ($bulan1));
+                                                            $bulan1++;
+                                                        @endphp
+                                                        @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
+                                                        @php
+                                                            $rata2input22 = (($rata2input22 + $ukur->input_dua) / ($bulan2));
+                                                            $bulan2++;
+                                                        @endphp
+                                                        @endif
                                                     @endforeach
-                                                @else
-                                                    <td> - </td>
-                                                @endif
+                                                    <td>{{ $rata2input21 }}</td>
+                                                    <td>{{ $rata2input22 }}</td>
+                                                    @else
+                                                        @for ($i=1;$i<=2;$i++){
+                                                            <td>-</td>
+                                                        }
+                                                    @endfor
+                                                    @endif
                                             </tr>
                                         @endforeach
                                     @else
