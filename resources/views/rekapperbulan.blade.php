@@ -14,7 +14,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="{{ asset('/js/exportexcel.js') }}"></script>
     </head>
-    <body style="margin:1%; margin-right:10%;">
+    <body style="margin:1%;">
 
         <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja Akumulatif per Bulan Tahun {{ $tahun }}</h3>
 
@@ -129,9 +129,9 @@
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                             @php
-                                                                $rata2input1 = (($rata2input1 + $ukur->input_satu) / ($bulan));
-                                                                $rata2real = (($rata2real + $ukur->realisasi) / ($bulan));
-                                                                $rata2capai = (($rata2capai + $ukur->capaian) / ($bulan));
+                                                                $rata2input1 = number_format((float)(($rata2input1 + $ukur->input_satu) / ($bulan)), 2, '.', '');
+                                                                $rata2real = number_format((float)(($rata2real + $ukur->realisasi) / ($bulan)), 2, '.', '');
+                                                                $rata2capai = number_format((float)(($rata2capai + $ukur->capaian) / ($bulan)), 2, '.', '');;
                                                                 $bulan++;
                                                             @endphp
                                                                 <td>{{ $rata2input1 }}</td>
@@ -174,7 +174,7 @@
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                             @php
-                                                                $rata2input2 = (($rata2input2 + $ukur->input_dua) / ($bulan));
+                                                                $rata2input2 = number_format((float)(($rata2input2 + $ukur->input_dua) / ($bulan)), 2, '.', '');
                                                                 $bulan++;
                                                             @endphp
                                                                 <td>{{ $rata2input2 }}</td>
