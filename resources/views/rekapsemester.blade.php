@@ -1,4 +1,7 @@
-
+@php
+use App\Models\InputIku;
+use App\Models\Pengukuran;
+@endphp
 @if(isset(Auth::user()->email))
 <!doctype html>
 <html lang="en">
@@ -36,37 +39,114 @@
                                         <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
                                         <th rowspan="3">Indikator Kinerja</th>
                                         <th rowspan="3">Target</th>
-                                        <th colspan="48">Realisasi per Semester (6 Bulan)</th>
+                                        <th rowspan="3">Keterangan Input</th>
+                                        <th colspan="6">Realisasi Akumulatif per Semester</th>
                                     </tr>
                                     <tr>
-                                        <th colspan="3">I (Jan-Jul)</th>
-                                        <th colspan="3">II (Apr-Des)</th>
+                                        <th colspan="3">Semester I (Januari-Juni)</th>
+                                        <th colspan="3">Semester II (Januari-Desember)</th>
                                     </tr>
                                     <tr>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
+                                            <th>Input</th>
+                                            <th rowspan="2">Realisasi</th>
+                                            <th rowspan="2">Capaian</th>
+                                            <th>Input</th>
+                                            <th rowspan="2">Realisasi</th>
+                                            <th rowspan="2">Capaian</th>
                                     </tr>
                                 </thead>
                                 <tbody style="background: white; ">
-                                    <tr>
-                                        @foreach ($laporan as $iku)
-                                        <tr>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                            <td>{{ $iku->sasaran->isi_sasaran }}</td>
-                                            <td>{{ $iku->isi_iku }}</td>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                            <td>{{ $iku->sasaran->isi_sasaran }}</td>
-                                            <td>{{ $iku->isi_iku }}</td>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                        </tr>
+                                    <?php
+                                        $no = 1;
+                                    ?>
+                                    @if ($jml_dtl > 0 )
+                                        @foreach ($detail as $detailiku)
+                                            <tr>
+                                                <td rowspan="2">{{ $detailiku->iku->id }}</td>
+                                                <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
+                                                <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
+                                                <td rowspan="2">{{ $detailiku->iku->target }}%</td>
+                                                @php
+                                                    $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
+                                                    $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
+                                                @endphp
+                                                @if ($jml_ipt>0)
+                                                    <td>{{ $input[0]->ket_input }}</td>
+                                                @else
+                                                    <td> belum ditambahkan </td>
+                                                @endif
+                                                @php
+                                                    $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
+                                                    $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                @endphp
+                                                @if ($jml_ukur>0)
+                                                    @php
+                                                        $bulan = 1;
+                                                        $rata2input1=0;
+                                                        $rata2real=0;
+                                                        $rata2capai=0;
+                                                    @endphp
+                                                    @foreach ($ukur as $ukur)
+                                                            @php
+                                                                $rata2input1 = (($rata2input1 + $ukur->input_satu) / ($bulan));
+                                                                $rata2real = (($rata2real + $ukur->realisasi) / ($bulan));
+                                                                $rata2capai = (($rata2capai + $ukur->capaian) / ($bulan));
+                                                                $bulan++;
+                                                            @endphp
+                                                    @endforeach
+                                                    <td>{{ $rata2input1 }}</td>
+                                                    <td rowspan="2">{{ $rata2real }}%</td>
+                                                    <td rowspan="2">{{ $rata2capai }}%</td>
+                                                    @php
+                                                        $sisabln = 12 - $bulan;
+                                                    @endphp
+                                                    @if($sisabln > 6){
+                                                            <td> - </td>
+                                                            <td rowspan="2"> - </td>
+                                                            <td rowspan="2"> - </td>
+                                                    }
+                                                    @endif
+                                                @else
+                                                    @for ($i=1;$i<=2;$i++){
+                                                        <td>-</td>
+                                                        <td rowspan="2">-</td>
+                                                        <td rowspan="2">-</td>
+                                                    }
+                                                    @endfor
+                                                @endif
+                                            </tr>
+                                            <tr>
+                                                @if ($jml_ipt>0)
+                                                    <td>{{ $input[1]->ket_input }}</td>
+                                                @else
+                                                    <td>belum ditambahkan</td>
+                                                @endif
+                                                @php
+                                                    $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
+                                                    $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                @endphp
+                                                @if ($jml_ukur>0)
+                                                    @php
+                                                    $bulan = 1;
+                                                    $rata2input2=0;
+                                                    @endphp
+                                                    @foreach ($ukur as $ukur)
+                                                            @php
+                                                                $rata2input2 = (($rata2input2 + $ukur->input_dua) / ($bulan));
+                                                                $bulan++;
+                                                            @endphp
+                                                                <td>{{ $rata2input2 }}</td>
+                                                    @endforeach
+                                                @else
+                                                    <td> - </td>
+                                                @endif
+                                            </tr>
                                         @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="11"> Tidak ada data</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                             <script>

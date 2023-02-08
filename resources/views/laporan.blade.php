@@ -36,6 +36,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $no=1 ?>
+                                    
                                     @foreach ($detailiku as $lap)
 
                                     <tr class="alert">
