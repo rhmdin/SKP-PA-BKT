@@ -78,6 +78,7 @@ use App\Models\Pengukuran;
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                    $avgStar = Pengukuran::where('id_detail', $detailiku->id)->avg('input_dua');
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
@@ -86,24 +87,20 @@ use App\Models\Pengukuran;
                                                         $rata2real1=0;
                                                         $rata2capai1=0;
                                                         $bulan2 = 1;
-                                                        $rata2input12=0;
-                                                        $rata2real2=0;
-                                                        $rata2capai2=0;
+                                                        $rata2input12 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('input_satu'),2);
+                                                        $rata2real2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('realisasi'),2);
+                                                        $rata2capai2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('capaian'),2);
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
+                                                        @php
+                                                            $bulan2++;
+                                                        @endphp
                                                             @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
                                                             @php
                                                                 $rata2input11 = round((($rata2input11 + $ukur->input_satu) / ($bulan1)),2);
                                                                 $rata2real1 = round((($rata2real1 + $ukur->realisasi) / ($bulan1)),2);
                                                                 $rata2capai1 = round((($rata2capai1 + $ukur->capaian) / ($bulan1)),2);
                                                                 $bulan1++;
-                                                            @endphp
-                                                            @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
-                                                            @php
-                                                                $rata2input12 = round((($rata2input12 + $ukur->input_satu) / ($bulan2)),2);
-                                                                $rata2real2 = round((($rata2real2 + $ukur->realisasi) / ($bulan2)),2);
-                                                                $rata2capai2 = round((($rata2capai2 + $ukur->capaian) / ($bulan2)),2);
-                                                                $bulan2++;
                                                             @endphp
                                                             @endif
                                                     @endforeach
@@ -131,13 +128,13 @@ use App\Models\Pengukuran;
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                    $rata2input22 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('input_dua'),2);
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
                                                     $bulan1 = 1;
                                                     $rata2input21=0;
                                                     $bulan2 = 1;
-                                                    $rata2input22=0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                         @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
@@ -146,15 +143,10 @@ use App\Models\Pengukuran;
                                                             $rata2input21 = (($rata2input21 + $ukur->input_dua) / ($bulan1));
                                                             $bulan1++;
                                                         @endphp
-                                                        @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
-                                                        @php
-                                                            $rata2input22 = (($rata2input22 + $ukur->input_dua) / ($bulan2));
-                                                            $bulan2++;
-                                                        @endphp
                                                         @endif
                                                     @endforeach
                                                     <td>{{ $rata2input21 }}</td>
-                                                    <td>{{ $rata2input22 }}</td>
+                                                    <td>{{ $rata2input22 }} </td>
                                                     @else
                                                         @for ($i=1;$i<=2;$i++){
                                                             <td>-</td>
