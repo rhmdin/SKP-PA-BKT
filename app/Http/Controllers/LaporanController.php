@@ -48,4 +48,4 @@ class LaporanController extends Controller
         }
         return view('rekapsemester',compact('tahun','detail','jml_dtl'));
     }
-}
+};
