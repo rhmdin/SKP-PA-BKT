@@ -12,7 +12,7 @@ class LaporanController extends Controller
 {
     public function getLap()
     {
-        $detailiku = DetailIku::all();
+        $detailiku = DetailIku::groupBy('tahun')->get();
         return view('laporan', compact('detailiku'));
     }
     public function getBln($tahun)
@@ -26,6 +26,7 @@ class LaporanController extends Controller
         $ukur2 = $ukur;
         $ukur3 = $ukur;
         return view('rekapperbulan',compact('tahun','detailiku','jmlbln','id_detiku','ukur','ukur2','ukur3'));
+            $detail = DetailIku::where('tahun', $tahun)->get();
     }
 
     public function getTri($tahun)
