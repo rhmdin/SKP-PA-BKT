@@ -62,7 +62,7 @@ Route::get('/laporan', [LaporanController::class, 'getLap'])->name('laporan');
 Route::get('/laporan/rekap/{tahun}/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
 Route::get('/laporan/rekap/{tahun}/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
 Route::get('/laporan/rekap/{tahun}/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
-
+Route::get('/laporan/rekap/{tahun}/bulan/export',[LaporanController::class, 'exportbln'])->name('export.bulan');
 
 
 
