@@ -1,4 +1,7 @@
-
+@php
+use App\Models\InputIku;
+use App\Models\Pengukuran;
+@endphp
 @if(isset(Auth::user()->email))
 <!doctype html>
 <html lang="en">
@@ -11,7 +14,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="{{ asset('/js/exportexcel.js') }}"></script>
     </head>
-    <body style="margin:1%; margin-right:10%;">
+    <body style="margin:1%; ">
 
         <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja per Semester Tahun 2023</h3>
 
@@ -26,53 +29,143 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-wrap">
-                            <table class="table table-bordered" id="tahunan"
+                            <table class="table table-bordered" id="akumulatif"
                                     style="margin-top:2%;background: white;
                                     text-align: center;
                                     vertical-align: middle; font-size:10pt; font-family:'Times New Roman', Times, serif; border-color:black; width:100%;">
                                 <thead style="background: white; ">
                                     <tr>
                                         <th rowspan="3">No</th>
-                                        <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
-                                        <th rowspan="3">Indikator Kinerja</th>
-                                        <th rowspan="3">Target</th>
-                                        <th colspan="48">Realisasi per Semester (6 Bulan)</th>
+                                        <th rowspan="3" style="width:35%;" >Sasaran Strategis</th>
+                                        <th rowspan="3" style="width:35%;">Indikator Kinerja</th>
+                                        <th rowspan="3">Target (%)</th>
+                                        <th rowspan="3" style="width:50%;">Keterangan Input</th>
+                                        <th colspan="6">Realisasi Akumulatif per Semester Tahun {{ $tahun }}</th>
                                     </tr>
                                     <tr>
-                                        <th colspan="3">I (Jan-Jul)</th>
-                                        <th colspan="3">II (Apr-Des)</th>
+                                        <th colspan="3" style="width:20%;">Semester I (Januari-Juni)</th>
+                                        <th colspan="3" style="width:20%;">Semester II (Januari-Desember)</th>
                                     </tr>
                                     <tr>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
-                                        <th>Input</th>
-                                        <th>Realisasi</th>
-                                        <th>Capaian</th>
+                                            <th>Input</th>
+                                            <th rowspan="2">Realisasi (%)</th>
+                                            <th rowspan="2">Capaian (%)</th>
+                                            <th>Input</th>
+                                            <th rowspan="2">Realisasi (%)</th>
+                                            <th rowspan="2">Capaian (%)</th>
                                     </tr>
                                 </thead>
                                 <tbody style="background: white; ">
-                                    <tr>
-                                        @foreach ($laporan as $iku)
-                                        <tr>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                            <td>{{ $iku->sasaran->isi_sasaran }}</td>
-                                            <td>{{ $iku->isi_iku }}</td>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                            <td>{{ $iku->sasaran->isi_sasaran }}</td>
-                                            <td>{{ $iku->isi_iku }}</td>
-                                            <td>{{ $iku->id }}</td>
-                                            <td>{{ $iku->sasaran->tujuan->isi_tujuan }}</td>
-                                        </tr>
+                                    <?php
+                                        $no = 1;
+                                    ?>
+                                    @if ($jml_dtl > 0 )
+                                        @foreach ($detail as $detailiku)
+                                            <tr>
+                                                <td rowspan="2">{{ $detailiku->iku->id }}</td>
+                                                <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
+                                                <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
+                                                <td rowspan="2">{{ $detailiku->iku->target }}</td>
+                                                @php
+                                                    $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
+                                                    $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
+                                                @endphp
+                                                @if ($jml_ipt>0)
+                                                    <td>{{ $input[0]->ket_input }}</td>
+                                                @else
+                                                    <td> belum ditambahkan </td>
+                                                @endif
+                                                @php
+                                                    $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
+                                                    $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                    $avgStar = Pengukuran::where('id_detail', $detailiku->id)->avg('input_dua');
+                                                @endphp
+                                                @if ($jml_ukur>0)
+                                                    @php
+                                                        $bulan1 = 1;
+                                                        $rata2input11=0;
+                                                        $rata2real1=0;
+                                                        $rata2capai1=0;
+                                                        $bulan2 = 1;
+                                                        $rata2input12 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('input_satu'),2);
+                                                        $rata2real2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('realisasi'),2);
+                                                        $rata2capai2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('capaian'),2);
+                                                    @endphp
+                                                    @foreach ($ukur as $ukur)
+                                                        @php
+                                                            $bulan2++;
+                                                        @endphp
+                                                            @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
+                                                            @php
+                                                                $rata2input11 = round((($rata2input11 + $ukur->input_satu) / ($bulan1)),2);
+                                                                $rata2real1 = round((($rata2real1 + $ukur->realisasi) / ($bulan1)),2);
+                                                                $rata2capai1 = round((($rata2capai1 + $ukur->capaian) / ($bulan1)),2);
+                                                                $bulan1++;
+                                                            @endphp
+                                                            @endif
+                                                    @endforeach
+                                                    <td>{{ $rata2input11 }}</td>
+                                                    <td rowspan="2">{{ $rata2real1 }}</td>
+                                                    <td rowspan="2">{{ $rata2capai1 }}</td>
+                                                    <td>{{ $rata2input12 }}</td>
+                                                    <td rowspan="2">{{ $rata2real2 }}</td>
+                                                    <td rowspan="2">{{ $rata2capai2 }}</td>
+                                                @else
+                                                    @for ($i=1;$i<=2;$i++){
+                                                        <td>-</td>
+                                                        <td rowspan="2">-</td>
+                                                        <td rowspan="2">-</td>
+                                                    }
+                                                    @endfor
+                                                @endif
+                                            </tr>
+                                            <tr>
+                                                @if ($jml_ipt>0)
+                                                    <td>{{ $input[1]->ket_input }}</td>
+                                                @else
+                                                    <td>belum ditambahkan</td>
+                                                @endif
+                                                @php
+                                                    $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
+                                                    $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                    $rata2input22 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('input_dua'),2);
+                                                @endphp
+                                                @if ($jml_ukur>0)
+                                                    @php
+                                                    $bulan1 = 1;
+                                                    $rata2input21=0;
+                                                    $bulan2 = 1;
+                                                    @endphp
+                                                    @foreach ($ukur as $ukur)
+                                                        @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
+                                                        @php
+                                                        $rata2input11 = round((($rata2input11 + $ukur->input_satu) / ($bulan1)),2);
+                                                            $rata2input21 = (($rata2input21 + $ukur->input_dua) / ($bulan1));
+                                                            $bulan1++;
+                                                        @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    <td>{{ $rata2input21 }}</td>
+                                                    <td>{{ $rata2input22 }} </td>
+                                                    @else
+                                                        @for ($i=1;$i<=2;$i++){
+                                                            <td>-</td>
+                                                        }
+                                                    @endfor
+                                                    @endif
+                                            </tr>
                                         @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="11"> Tidak ada data</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                             <script>
                                 document.getElementById('exportexcel').addEventListener('click', function(){
                                     var table2excel = new Table2Excel();
-                                    table2excel.export(document.querySelectorAll("#tahunan"));
+                                    table2excel.export(document.querySelectorAll("#akumulatif"));
 
                                 });
 
@@ -81,6 +174,171 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row" style="margin-top:5%">
+                    <div class="col-md-12">
+                                <a href="{{route('laporan')}}" style="text-decoration: none;">
+                                    <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
+                                </a>
+                            <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
+                    </div>
+                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrap">
+                                    <table class="table table-bordered" id="akumulatif"
+                                            style="margin-top:2%;background: white;
+                                            text-align: center;
+                                            vertical-align: middle; font-size:10pt; font-family:'Times New Roman', Times, serif; border-color:black; width:100%;">
+                                        <thead style="background: white; ">
+                                            <tr>
+                                                <th rowspan="3">No</th>
+                                                <th rowspan="3" style="width:35%;" >Sasaran Strategis</th>
+                                                <th rowspan="3" style="width:35%;">Indikator Kinerja</th>
+                                                <th rowspan="3">Target (%)</th>
+                                                <th rowspan="3" style="width:50%;">Keterangan Input</th>
+                                                <th colspan="6">Realisasi Parsial per Semester Tahun {{ $tahun }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3" style="width:20%;">Semester I (Januari-Juni)</th>
+                                                <th colspan="3" style="width:20%;">Semester II (Juli-Desember)</th>
+                                            </tr>
+                                            <tr>
+                                                    <th>Input</th>
+                                                    <th rowspan="2">Realisasi (%)</th>
+                                                    <th rowspan="2">Capaian (%)</th>
+                                                    <th>Input</th>
+                                                    <th rowspan="2">Realisasi (%)</th>
+                                                    <th rowspan="2">Capaian (%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="background: white; ">
+                                            <?php
+                                                $no = 1;
+                                            ?>
+                                            @if ($jml_dtl > 0 )
+                                                @foreach ($detail as $detailiku)
+                                                    <tr>
+                                                        <td rowspan="2">{{ $detailiku->iku->id }}</td>
+                                                        <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
+                                                        <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
+                                                        <td rowspan="2">{{ $detailiku->iku->target }}</td>
+                                                        @php
+                                                            $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
+                                                            $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
+                                                        @endphp
+                                                        @if ($jml_ipt>0)
+                                                            <td>{{ $input[0]->ket_input }}</td>
+                                                        @else
+                                                            <td> belum ditambahkan </td>
+                                                        @endif
+                                                        @php
+                                                            $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
+                                                            $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                        @endphp
+                                                        @if ($jml_ukur>0)
+                                                            @php
+                                                                $bulan1 = 1;
+                                                                $rata2input11=0;
+                                                                $rata2real1=0;
+                                                                $rata2capai1=0;
+                                                                $bulan2 = 1;
+                                                                $rata2input12=0;
+                                                                $rata2real2=0;
+                                                                $rata2capai2=0;
+                                                            @endphp
+                                                            @foreach ($ukur as $ukur)
+                                                                    @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
+                                                                    @php
+                                                                        $rata2input11 = round((($rata2input11 + $ukur->input_satu) / ($bulan1)),2);
+                                                                        $rata2real1 = round((($rata2real1 + $ukur->realisasi) / ($bulan1)),2);
+                                                                        $rata2capai1 = round((($rata2capai1 + $ukur->capaian) / ($bulan1)),2);
+                                                                        $bulan1++;
+                                                                    @endphp
+                                                                    @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
+                                                                    @php
+                                                                        $rata2input12 = round((($rata2input12 + $ukur->input_satu) / ($bulan2)),2);
+                                                                        $rata2real2 = round((($rata2real2 + $ukur->realisasi) / ($bulan2)),2);
+                                                                        $rata2capai2 = round((($rata2capai2 + $ukur->capaian) / ($bulan2)),2);
+                                                                        $bulan2++;
+                                                                    @endphp
+                                                                    @endif
+                                                            @endforeach
+                                                            <td>{{ $rata2input11 }}</td>
+                                                            <td rowspan="2">{{ $rata2real1 }}</td>
+                                                            <td rowspan="2">{{ $rata2capai1 }}</td>
+                                                            <td>{{ $rata2input12 }}</td>
+                                                            <td rowspan="2">{{ $rata2real2 }}</td>
+                                                            <td rowspan="2">{{ $rata2capai2 }}</td>
+                                                        @else
+                                                            @for ($i=1;$i<=2;$i++){
+                                                                <td>-</td>
+                                                                <td rowspan="2">-</td>
+                                                                <td rowspan="2">-</td>
+                                                            }
+                                                            @endfor
+                                                        @endif
+                                                    </tr>
+                                                    <tr>
+                                                        @if ($jml_ipt>0)
+                                                            <td>{{ $input[1]->ket_input }}</td>
+                                                        @else
+                                                            <td>belum ditambahkan</td>
+                                                        @endif
+                                                        @php
+                                                            $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
+                                                            $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                        @endphp
+                                                        @if ($jml_ukur>0)
+                                                            @php
+                                                            $bulan1 = 1;
+                                                            $rata2input21=0;
+                                                            $bulan2 = 1;
+                                                            $rata2input22=0;
+                                                            @endphp
+                                                            @foreach ($ukur as $ukur)
+                                                                @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
+                                                                @php
+                                                                $rata2input11 = round((($rata2input11 + $ukur->input_satu) / ($bulan1)),2);
+                                                                    $rata2input21 = (($rata2input21 + $ukur->input_dua) / ($bulan1));
+                                                                    $bulan1++;
+                                                                @endphp
+                                                                @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
+                                                                @php
+                                                                    $rata2input22 = (($rata2input22 + $ukur->input_dua) / ($bulan2));
+                                                                    $bulan2++;
+                                                                @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            <td>{{ $rata2input21 }}</td>
+                                                            <td>{{ $rata2input22 }}</td>
+                                                            @else
+                                                                @for ($i=1;$i<=2;$i++){
+                                                                    <td>-</td>
+                                                                }
+                                                            @endfor
+                                                            @endif
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td colspan="11"> Tidak ada data</td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                    <script>
+                                        document.getElementById('exportexcel').addEventListener('click', function(){
+                                            var table2excel = new Table2Excel();
+                                            table2excel.export(document.querySelectorAll("#akumulatif"));
+
+                                        });
+
+
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
     </body>
 </html>
 

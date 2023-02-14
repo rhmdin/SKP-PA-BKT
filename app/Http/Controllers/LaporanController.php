@@ -19,16 +19,6 @@ class LaporanController extends Controller
     public function getBln($tahun)
     {
         $tahun = $tahun;
-<<<<<<< HEAD
-        $detailiku = DetailIku::where('tahun', $tahun)->get();
-        $id_detiku = $detailiku[0]->id;
-    
-        $jmlbln = Pengukuran::where('id_detail',$id_detiku)->count();
-        $ukur = Pengukuran::where('id_detail',$id_detiku)->get();
-        $ukur2 = $ukur;
-        $ukur3 = $ukur;
-        return view('rekapperbulan',compact('tahun','detailiku','jmlbln','id_detiku','ukur','ukur2','ukur3'));
-=======
         $jml_dtl = DetailIku::where('tahun', $tahun)->count();
         if($jml_dtl > 0){
             $detail = DetailIku::where('tahun', $tahun)->get();
@@ -37,7 +27,7 @@ class LaporanController extends Controller
             $detail = 0;
         }
         return view('rekapperbulan',compact('tahun','detail','jml_dtl'));
->>>>>>> f1987c4a3453d9dad61f9c35e15b5c27766c5fc7
+
     }
 
     public function getTri($tahun)
@@ -52,7 +42,17 @@ class LaporanController extends Controller
     public function getSem($tahun)
     {
         $tahun = $tahun;
-        $laporan = Iku::all();
-        return view('rekapsemester', compact('laporan'));
+        $jml_dtl = DetailIku::where('tahun', $tahun)->count();
+        if($jml_dtl > 0){
+            $detail = DetailIku::where('tahun', $tahun)->get();
+        }
+        else{
+            $detail = 0;
+        }
+        return view('rekapsemester',compact('tahun','detail','jml_dtl'));
     }
+
 }
+
+
+
