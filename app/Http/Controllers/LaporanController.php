@@ -28,7 +28,14 @@ class LaporanController extends Controller
         $ukur3 = $ukur;
         return view('rekapperbulan',compact('tahun','detailiku','jmlbln','id_detiku','ukur','ukur2','ukur3'));
         $jml_dtl = DetailIku::where('tahun', $tahun)->count();
+        if($jml_dtl > 0){
             $detail = DetailIku::where('tahun', $tahun)->get();
+        }
+        else{
+            $detail = 0;
+        }
+        return view('rekapperbulan',compact('tahun','detail','jml_dtl'));
+>>>>>>> f1987c4a3453d9dad61f9c35e15b5c27766c5fc7
     }
 
     public function getTri($tahun)
