@@ -19,6 +19,7 @@ class LaporanController extends Controller
     public function getBln($tahun)
     {
         $tahun = $tahun;
+
         $jml_dtl = DetailIku::where('tahun', $tahun)->count();
         if($jml_dtl > 0){
             $detail = DetailIku::where('tahun', $tahun)->get();
@@ -34,7 +35,7 @@ class LaporanController extends Controller
     {
         $tahun = $tahun;
 
-        $detailiku = DetailIku::where('tahun', $tahun)->get();
+        $detailiku = DetailIku::where('tahun', $tahun)->join('iku', 'iku.id','=', 'detail_iku.id_iku')->select('detail_iku.id','id_iku', 'tahun', 'target', 'iku.jenis')->orderBy('iku.jenis')->get();
         $laporan = Iku::all();
         return view('rekaptriwulan', compact('detailiku', 'tahun'));
     }
@@ -53,6 +54,3 @@ class LaporanController extends Controller
     }
 
 }
-
-
-

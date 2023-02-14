@@ -36,7 +36,6 @@
                                         <th rowspan="3">No</th>
                                         <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
                                         <th rowspan="3">Indikator Kinerja</th>
-                                        <th rowspan="3" >jenis</th>
                                         <th rowspan="3">Target (%)</th>
                                         <th rowspan="3">Keterangan Input</th>
                                         <th colspan="12">Realisasi per Triwulan (3 Bulan)</th>
@@ -72,7 +71,6 @@
                                             <td rowspan="2">{{ $no1++ }}</td>
                                             <td rowspan="2">{{ $iku->iku->sasaran->isi_sasaran }}</td>
                                             <td rowspan="2">{{ $iku->iku->isi_iku }}</td>
-                                            <td rowspan="2" >{{ $iku->iku->jenis }}</td>
                                             <td rowspan="2">{{ $iku->target }}</td>
                                             @if (count($iku->iku->inputIku) != 0)
                                             @foreach ($iku->iku->inputIku as $index => $item)

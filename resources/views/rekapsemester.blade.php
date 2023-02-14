@@ -65,7 +65,7 @@ use App\Models\Pengukuran;
                                                 <td rowspan="2">{{ $detailiku->iku->id }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
-                                                <td rowspan="2">{{ $detailiku->iku->target }}</td>
+                                                <td rowspan="2">{{ $detailiku->target }}</td>
                                                 @php
                                                     $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
                                                     $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
