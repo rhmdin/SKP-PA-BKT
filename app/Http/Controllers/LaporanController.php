@@ -18,6 +18,7 @@ class LaporanController extends Controller
     public function getBln($tahun)
     {
         $tahun = $tahun;
+<<<<<<< HEAD
         $detailiku = DetailIku::where('tahun', $tahun)->get();
         $id_detiku = $detailiku[0]->id;
     
@@ -26,6 +27,7 @@ class LaporanController extends Controller
         $ukur2 = $ukur;
         $ukur3 = $ukur;
         return view('rekapperbulan',compact('tahun','detailiku','jmlbln','id_detiku','ukur','ukur2','ukur3'));
+        $jml_dtl = DetailIku::where('tahun', $tahun)->count();
             $detail = DetailIku::where('tahun', $tahun)->get();
     }
 
