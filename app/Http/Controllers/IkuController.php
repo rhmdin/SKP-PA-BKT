@@ -41,7 +41,6 @@ class IkuController extends Controller
             'jenis' => 'required',
             'isi_iku' => 'required',
             'penanggung_jawab' => 'required',
-            'target' => 'required',
             'sumber_data' => 'required'
         ]);
 
@@ -78,7 +77,6 @@ class IkuController extends Controller
             'jenis' => 'required',
             'isi_iku' => 'required',
             'penanggung_jawab' => 'required',
-            'target' => 'required',
             'sumber_data' => 'required'
         ]);
 

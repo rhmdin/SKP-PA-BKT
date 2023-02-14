@@ -107,14 +107,15 @@
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->target }}</td>
-                                                @php
-                                                    $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
-                                                    $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
-                                                @endphp
-                                                @if ($jml_ipt>0)
-                                                    <td>{{ $input[0]->ket_input }}</td>
+                                                @if (count($detailiku->iku->inputIku) != 0)
+                                                @foreach ($detailiku->iku->inputIku as $index => $item)
+                                                @if($index == 0)
+                                                <td>{{ $item->ket_input }}</td>
                                                 @else
-                                                    <td> belum ditambahkan </td>
+                                                @endif 
+                                                @endforeach
+                                                @else  
+                                                <td></td>
                                                 @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
@@ -158,11 +159,16 @@
                                                 @endif
                                             </tr>
                                             <tr>
-                                                @if ($jml_ipt>0)
-                                                    <td>{{ $input[1]->ket_input }}</td>
-                                                @else
-                                                    <td>belum ditambahkan</td>
-                                                @endif
+                                                @if (count($detailiku->iku->inputIku) != 0)
+                                            @foreach ($detailiku->iku->inputIku as $index => $item)
+                                            @if($index == 1)
+                                            <td>{{ $item->ket_input }}</td>
+                                            @else
+                                            @endif 
+                                            @endforeach
+                                            @else  
+                                            <td></td>
+                                            @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
@@ -292,15 +298,16 @@
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->target }}</td>
-                                                @php
-                                                    $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
-                                                    $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
-                                                @endphp
-                                                @if ($jml_ipt>0)
-                                                    <td>{{ $input[0]->ket_input }}</td>
-                                                @else
-                                                    <td> belum ditambahkan </td>
-                                                @endif
+                                                @if (count($detailiku->iku->inputIku) != 0)
+                                            @foreach ($detailiku->iku->inputIku as $index => $item)
+                                            @if($index == 0)
+                                            <td>{{ $item->ket_input }}</td>
+                                            @else
+                                            @endif 
+                                            @endforeach
+                                            @else  
+                                            <td></td>
+                                            @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
@@ -340,11 +347,16 @@
                                                 @endif
                                             </tr>
                                             <tr>
-                                                @if ($jml_ipt>0)
-                                                    <td>{{ $input[1]->ket_input }}</td>
-                                                @else
-                                                    <td>belum ditambahkan</td>
-                                                @endif
+                                                @if (count($detailiku->iku->inputIku) != 0)
+                                            @foreach ($detailiku->iku->inputIku as $index => $item)
+                                            @if($index == 1)
+                                            <td>{{ $item->ket_input }}</td>
+                                            @else
+                                            @endif 
+                                            @endforeach
+                                            @else  
+                                            <td></td>
+                                            @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();

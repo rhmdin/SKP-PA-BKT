@@ -28,7 +28,6 @@
                                 <th>Indikator Kinerja</th>
                                 <th>Jenis</th>
                                 <th>Penanggung Jawab</th>
-                                <th>Target</th>
                                 <th style="width:100px">Opsi</th>
                             </tr>
                         </thead>
@@ -48,7 +47,6 @@
                                 <td>{{ $iku->isi_iku }}</td>
                                 <td>{{ $iku->jenis }}</td>
                                 <td>{{ $iku->penanggung_jawab }}</td>
-                                <td>{{ $iku->target }}</td>
                                 <td>
                                     <a class="editb" href="/input-indikator/{{ $iku->id}}"><i class='bx bx-detail' style="color: #0026be;"></i></a>
                                     <a class="editb" href="/indikator-kinerja/{{ $iku->id}}"><i class='bx bx-edit' style="color: #e3b200;"></i></a>

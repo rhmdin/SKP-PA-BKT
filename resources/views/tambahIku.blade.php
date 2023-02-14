@@ -39,10 +39,7 @@
                         <label for="penanggung_jawab" class="form-label">Penanggung Jawab </label> 
                         <input type="text" class="form-control" placeholder="Masukkan penanggung jawab" name="penanggung_jawab" value="{{ old('penanggung_jawab') }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="target" class="form-label">Target (%)</label> 
-                        <input type="text" class="form-control" placeholder="Masukkan target" name="target" value="{{ old('target') }}">
-                    </div>
+
                     <div class="mb-3">
                         <label for="sumber_data" class="form-label">Sumber Data </label> 
                         <input type="text" class="form-control" placeholder="Masukkan sumber data" name="sumber_data" value="{{ old('sumber_data') }}">
