@@ -9,9 +9,6 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\LaporanController;
 
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,11 +22,7 @@ use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('auth/login');
-<<<<<<< HEAD
- });
-=======
 });
->>>>>>> 1e022049d6858c421f5a65f456e60c9a87ef8b6f
 
 
 
@@ -66,9 +59,9 @@ Route::put('/pengukuran-kinerja/{peng}', [PengukuranController::class, 'update']
 
 
 Route::get('/laporan', [LaporanController::class, 'getLap'])->name('laporan');
-Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
-Route::get('/laporan/rekap/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
-Route::get('/laporan/rekap/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
+Route::get('/laporan/rekap/{tahun}/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
+Route::get('/laporan/rekap/{tahun}/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
+Route::get('/laporan/rekap/{tahun}/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
 
 
 
