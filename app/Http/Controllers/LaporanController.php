@@ -15,6 +15,7 @@ class LaporanController extends Controller
         $detailiku = DetailIku::groupBy('tahun')->get();
         return view('laporan', compact('detailiku'));
     }
+
     public function getBln($tahun)
     {
         $tahun = $tahun;
@@ -27,6 +28,7 @@ class LaporanController extends Controller
         $ukur2 = $ukur;
         $ukur3 = $ukur;
         return view('rekapperbulan',compact('tahun','detailiku','jmlbln','id_detiku','ukur','ukur2','ukur3'));
+=======
         $jml_dtl = DetailIku::where('tahun', $tahun)->count();
         if($jml_dtl > 0){
             $detail = DetailIku::where('tahun', $tahun)->get();
