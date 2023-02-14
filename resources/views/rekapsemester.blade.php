@@ -17,8 +17,9 @@ use App\Models\Pengukuran;
     <body style="margin:1%; ">
 
         <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja per Semester Tahun 2023</h3>
+        <h3 class="mt-4" >I. Akumulatif</h3>
 
-        <div class="row" style="margin-top:5%">
+        <div class="row" style="margin-top:2%">
             <div class="col-md-12">
                         <a href="{{route('laporan')}}" style="text-decoration: none;">
                             <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
@@ -26,8 +27,8 @@ use App\Models\Pengukuran;
                     <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
             </div>
         </div>
-                <div class="row">
-                    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
                         <div class="table-wrap">
                             <table class="table table-bordered" id="akumulatif"
                                     style="margin-top:2%;background: white;
@@ -187,9 +188,10 @@ use App\Models\Pengukuran;
                             </script>
                         </div>
                     </div>
-                </div>
+        </div>
+                <h3 class="mt-4" >II. Parsial</h3>
 
-                <div class="row" style="margin-top:5%">
+                <div class="row" style="margin-top:2%">
                     <div class="col-md-12">
                                 <a href="{{route('laporan')}}" style="text-decoration: none;">
                                     <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
