@@ -22,7 +22,7 @@ class LaporanController extends Controller
 
         $jml_dtl = DetailIku::where('tahun', $tahun)->count();
         if($jml_dtl > 0){
-            $detail = DetailIku::where('tahun', $tahun)->get();
+            $detail = DetailIku::where('tahun', $tahun)->join('iku', 'iku.id','=', 'detail_iku.id_iku')->select('detail_iku.id','id_iku', 'tahun', 'target', 'iku.jenis')->orderBy('iku.jenis')->get();
         }
         else{
             $detail = 0;
@@ -45,7 +45,7 @@ class LaporanController extends Controller
         $tahun = $tahun;
         $jml_dtl = DetailIku::where('tahun', $tahun)->count();
         if($jml_dtl > 0){
-            $detail = DetailIku::where('tahun', $tahun)->get();
+            $detail = DetailIku::where('tahun', $tahun)->join('iku', 'iku.id','=', 'detail_iku.id_iku')->select('detail_iku.id','id_iku', 'tahun', 'target', 'iku.jenis')->orderBy('iku.jenis')->get();
         }
         else{
             $detail = 0;

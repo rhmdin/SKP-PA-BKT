@@ -39,6 +39,7 @@
                                         <th rowspan="3">No</th>
                                         <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
                                         <th rowspan="3">Indikator Kinerja</th>
+                                        <th rowspan="3">Jenis</th>
                                         <th rowspan="3">Target (%)</th>
                                         <th rowspan="3">Keterangan Input</th>
                                         <th colspan="36">Realisasi Akumulatif per Bulan Tahun {{ $tahun }}</th>
@@ -103,19 +104,33 @@
                                     @if ($jml_dtl > 0 )
                                         @foreach ($detail as $detailiku)
                                             <tr>
+                                                @if($detailiku->iku->jenis==="u")
+                                                    @php
+                                                    $jenis = "umum";
+                                                    @endphp
+                                                @elseif($detailiku->iku->jenis==="p")
+                                                    @php
+                                                    $jenis = "pendukung";
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                    $jenis = " - ";
+                                                    @endphp
+                                                @endif
                                                 <td rowspan="2">{{ $detailiku->iku->id }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
-                                                <td rowspan="2">{{ $detailiku->iku->target }}</td>
+                                                <td rowspan="2">{{ $jenis }}</td>
+                                                <td rowspan="2">{{ $detailiku->target }}</td>
                                                 @if (count($detailiku->iku->inputIku) != 0)
-                                                @foreach ($detailiku->iku->inputIku as $index => $item)
-                                                @if($index == 0)
-                                                <td>{{ $item->ket_input }}</td>
+                                                    @foreach ($detailiku->iku->inputIku as $index => $item)
+                                                    @if($index == 0)
+                                                    <td>{{ $item->ket_input }}</td>
+                                                    @else
+                                                    @endif
+                                                    @endforeach
                                                 @else
-                                                @endif 
-                                                @endforeach
-                                                @else  
-                                                <td></td>
+                                                <td>belum ditambahkan</td>
                                                 @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
@@ -164,10 +179,10 @@
                                             @if($index == 1)
                                             <td>{{ $item->ket_input }}</td>
                                             @else
-                                            @endif 
+                                            @endif
                                             @endforeach
-                                            @else  
-                                            <td></td>
+                                            @else
+                                            <td>belum ditambahkan</td>
                                             @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
@@ -203,8 +218,6 @@
                                     table2excel.export(document.querySelectorAll("#akumulatif"));
 
                                 });
-
-
                             </script>
                         </div>
                     </div>
@@ -230,6 +243,7 @@
                                         <th rowspan="3">No</th>
                                         <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
                                         <th rowspan="3">Indikator Kinerja</th>
+                                        <th rowspan="3">Jenis</th>
                                         <th rowspan="3">Target (%)</th>
                                         <th rowspan="3">Keterangan Input</th>
                                         <th colspan="36">Realisasi Parsial per Bulan Tahun {{ $tahun }}</th>
@@ -294,19 +308,33 @@
                                     @if ($jml_dtl > 0 )
                                         @foreach ($detail as $detailiku)
                                             <tr>
+                                                @if($detailiku->iku->jenis==="u")
+                                                    @php
+                                                    $jenis = "umum";
+                                                    @endphp
+                                                @elseif($detailiku->iku->jenis==="p")
+                                                    @php
+                                                    $jenis = "pendukung";
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                    $jenis = " - ";
+                                                    @endphp
+                                                @endif
                                                 <td rowspan="2">{{ $detailiku->iku->id }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
-                                                <td rowspan="2">{{ $detailiku->iku->target }}</td>
+                                                <td rowspan="2">{{ $jenis }}</td>
+                                                <td rowspan="2">{{ $detailiku->target }}</td>
                                                 @if (count($detailiku->iku->inputIku) != 0)
                                             @foreach ($detailiku->iku->inputIku as $index => $item)
                                             @if($index == 0)
                                             <td>{{ $item->ket_input }}</td>
                                             @else
-                                            @endif 
+                                            @endif
                                             @endforeach
-                                            @else  
-                                            <td></td>
+                                            @else
+                                            <td>belum ditambahkan</td>
                                             @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
@@ -352,10 +380,10 @@
                                             @if($index == 1)
                                             <td>{{ $item->ket_input }}</td>
                                             @else
-                                            @endif 
+                                            @endif
                                             @endforeach
-                                            @else  
-                                            <td></td>
+                                            @else
+                                            <td>belum ditambahkan</td>
                                             @endif
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();

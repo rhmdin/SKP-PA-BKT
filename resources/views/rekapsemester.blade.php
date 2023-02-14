@@ -38,6 +38,7 @@ use App\Models\Pengukuran;
                                         <th rowspan="3">No</th>
                                         <th rowspan="3" style="width:35%;" >Sasaran Strategis</th>
                                         <th rowspan="3" style="width:35%;">Indikator Kinerja</th>
+                                        <th rowspan="3">Jenis</th>
                                         <th rowspan="3">Target (%)</th>
                                         <th rowspan="3" style="width:50%;">Keterangan Input</th>
                                         <th colspan="6">Realisasi Akumulatif per Semester Tahun {{ $tahun }}</th>
@@ -62,9 +63,23 @@ use App\Models\Pengukuran;
                                     @if ($jml_dtl > 0 )
                                         @foreach ($detail as $detailiku)
                                             <tr>
+                                                @if($detailiku->iku->jenis==="u")
+                                                    @php
+                                                    $jenis = "umum";
+                                                    @endphp
+                                                @elseif($detailiku->iku->jenis==="p")
+                                                    @php
+                                                    $jenis = "pendukung";
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                    $jenis = " - ";
+                                                    @endphp
+                                                @endif
                                                 <td rowspan="2">{{ $detailiku->iku->id }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
+                                                <td rowspan="2">{{ $jenis }}</td>
                                                 <td rowspan="2">{{ $detailiku->target }}</td>
                                                 @php
                                                     $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
@@ -194,6 +209,7 @@ use App\Models\Pengukuran;
                                         <th rowspan="3">No</th>
                                         <th rowspan="3" style="width:35%;" >Sasaran Strategis</th>
                                         <th rowspan="3" style="width:35%;">Indikator Kinerja</th>
+                                        <th rowspan="3">Jenis</th>
                                         <th rowspan="3">Target (%)</th>
                                         <th rowspan="3" style="width:50%;">Keterangan Input</th>
                                         <th colspan="6">Realisasi Parsial per Semester Tahun {{ $tahun }}</th>
@@ -218,10 +234,24 @@ use App\Models\Pengukuran;
                                     @if ($jml_dtl > 0 )
                                         @foreach ($detail as $detailiku)
                                             <tr>
+                                                @if($detailiku->iku->jenis==="u")
+                                                    @php
+                                                    $jenis = "umum";
+                                                    @endphp
+                                                @elseif($detailiku->iku->jenis==="p")
+                                                    @php
+                                                    $jenis = "pendukung";
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                    $jenis = " - ";
+                                                    @endphp
+                                                @endif
                                                 <td rowspan="2">{{ $detailiku->iku->id }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
-                                                <td rowspan="2">{{ $detailiku->iku->target }}</td>
+                                                <td rowspan="2">{{ $jenis }}</td>
+                                                <td rowspan="2">{{ $detailiku->target }}</td>
                                                 @php
                                                     $jml_ipt = InputIku::where('id_iku', $detailiku->iku->id)->count();
                                                     $input = InputIku::where('id_iku', $detailiku->iku->id)->get();
