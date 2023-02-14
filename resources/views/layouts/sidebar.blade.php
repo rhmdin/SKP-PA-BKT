@@ -19,22 +19,22 @@
 <body>
     <div class="sidebar d-flex flex-column align-items-lg-stretch">
         <div class="logo d-flex flex-row">
-            <img src="img/Logo_pa_bkt.png" alt="" />
+            <img src="{{ asset('img/Logo_pa_bkt.png') }}" alt="" />
             <h1 class="logo-text">Pengadilan Agama Bukittinggi</h1>
         </div>
         <nav class="sidebar-list">
             <ul class="nav-sidebar">
                 <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0 ? 'active' : '' }}
+                    <a href="#" class="nav-link {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0 || strpos(Route::currentRouteName(), 'input') === 0 ||  strpos(Route::currentRouteName(), 'tambahInput') === 0? 'active' : '' }}
                     ">
                         <i class="bx bx-book-alt"></i>
                         <p>Perencanaan</p>
                         <i class=""></i>
                     </a>
                     <ul class="treeview 
-                        {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0? 'active' : '' }}
+                        {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0 || strpos(Route::currentRouteName(), 'input') === 0 ||  strpos(Route::currentRouteName(), 'tambahInput') === 0 ? 'active' : '' }}
                     ">
-                        <li class="mt-2 nav-item {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 ? 'child-active' : '' }}">
+                        <li class="mt-2 nav-item {{ strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 ||  strpos(Route::currentRouteName(), 'input') === 0 ||  strpos(Route::currentRouteName(), 'tambahInput') === 0 ? 'child-active' : '' }}">
                             <a href="{{route('iku')}}" class="item-child">
                                 <p>Indikator Kinerja</p>
                             </a>

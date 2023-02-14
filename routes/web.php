@@ -8,10 +8,6 @@ use App\Http\Controllers\IkuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\LaporanController;
 
-
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\LaporanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,11 +21,7 @@ use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('auth/login');
-<<<<<<< HEAD
  });
-=======
-});
->>>>>>> 1e022049d6858c421f5a65f456e60c9a87ef8b6f
 
 
 
@@ -47,6 +39,12 @@ Route::post('/indikator-kinerja', [IkuController::class, 'store']);
 Route::get('/indikator-kinerja/{iku}', [IkuController::class, 'edit'])->name('editIku');
 Route::put('/indikator-kinerja/{iku}', [IkuController::class, 'update']);
 Route::get('/indikator-kinerja/{iku}/destroy', [IkuController::class, 'destroy']);
+
+Route::get('/input-indikator/{iku}', [IkuController::class, 'getInput'])->name('input');
+Route::get('/input-indikator/{iku}/tambah', [IkuController::class, 'get'])->name('tambahInput');
+Route::post('/input-indikator/{iku}', [IkuController::class, 'storeInput']);
+Route::get('/input-indikator/{iku}/{id}/destroy', [IkuController::class, 'destroyInput']);
+
 
 Route::get('/perjanjian-kinerja/{pk}', [DetailIkuController::class, 'editPk'])->name('editPk');
 Route::put('/perjanjian-kinerja/{pk}', [DetailIkuController::class, 'updatePk']);
@@ -66,11 +64,9 @@ Route::put('/pengukuran-kinerja/{peng}', [PengukuranController::class, 'update']
 
 
 Route::get('/laporan', [LaporanController::class, 'getLap'])->name('laporan');
-Route::get('/laporan/rekap/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
-Route::get('/laporan/rekap/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
-Route::get('/laporan/rekap/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
-
-
+Route::get('/laporan/rekap/{tahun}/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
+Route::get('/laporan/rekap/{tahun}/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
+Route::get('/laporan/rekap/{tahun}/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
 
 
 Route::get('/login', [MainController::class, 'index']);
