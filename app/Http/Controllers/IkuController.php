@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Iku;
+use App\Models\InputIku;
 use App\Models\Sasaran;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class IkuController extends Controller
     public function getIku()
     {
         $ikus = Iku::all();
-        //dd($ikus);
+       
         return view('iku', compact('ikus'));
     }
 
@@ -94,4 +95,46 @@ class IkuController extends Controller
         return redirect('/indikator-kinerja');
     }
 
+    public function getInput(Iku $iku)
+    {
+        $query = $iku->id;
+        $inputs = InputIku::where('id_iku', $query)->get();
+        //dd($query);
+        return view('input', compact('inputs'));
+    }
+
+    public function get()
+    {
+        $ikus = Iku::all();
+        //dd($ikus);
+        return view('tambahInput', compact('ikus'));
+    }
+
+    public function storeInput(Request $request, Iku $iku)
+    {
+        $id = $iku->id;
+        $request['id_iku'] = $id;
+        // validasi inputan
+        $validated = $request->validate([
+            'id_iku' => 'required',
+            'ket_input' => 'required'
+            
+        ]);
+
+        // menyimpan data produk
+        InputIku::create($validated);
+
+        $inputs = InputIku::where('id_iku', $id)->get();
+        $ikus = Iku::all();
+        //dd($ikus);
+        return view('input', compact('inputs'));
+    }
+
+    
+    public function destroyInput(iku $iku, InputIku $id)
+    {
+        $id->delete();
+
+        return redirect()->back();
+    }
 }

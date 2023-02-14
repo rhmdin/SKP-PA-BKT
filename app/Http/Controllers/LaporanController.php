@@ -27,13 +27,16 @@ class LaporanController extends Controller
             $detail = 0;
         }
         return view('rekapperbulan',compact('tahun','detail','jml_dtl'));
+
     }
 
     public function getTri($tahun)
     {
         $tahun = $tahun;
+
+        $detailiku = DetailIku::where('tahun', $tahun)->get();
         $laporan = Iku::all();
-        return view('rekaptriwulan', compact('laporan'));
+        return view('rekaptriwulan', compact('detailiku', 'tahun'));
     }
 
     public function getSem($tahun)
@@ -48,4 +51,8 @@ class LaporanController extends Controller
         }
         return view('rekapsemester',compact('tahun','detail','jml_dtl'));
     }
-};
+
+}
+
+
+

@@ -8,7 +8,6 @@ use App\Http\Controllers\IkuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\LaporanController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +40,12 @@ Route::get('/indikator-kinerja/{iku}', [IkuController::class, 'edit'])->name('ed
 Route::put('/indikator-kinerja/{iku}', [IkuController::class, 'update']);
 Route::get('/indikator-kinerja/{iku}/destroy', [IkuController::class, 'destroy']);
 
+Route::get('/input-indikator/{iku}', [IkuController::class, 'getInput'])->name('input');
+Route::get('/input-indikator/{iku}/tambah', [IkuController::class, 'get'])->name('tambahInput');
+Route::post('/input-indikator/{iku}', [IkuController::class, 'storeInput']);
+Route::get('/input-indikator/{iku}/{id}/destroy', [IkuController::class, 'destroyInput']);
+
+
 Route::get('/perjanjian-kinerja/{pk}', [DetailIkuController::class, 'editPk'])->name('editPk');
 Route::put('/perjanjian-kinerja/{pk}', [DetailIkuController::class, 'updatePk']);
 
@@ -63,8 +68,6 @@ Route::get('/laporan/rekap/{tahun}/bulan', [LaporanController::class, 'getBln'])
 Route::get('/laporan/rekap/{tahun}/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
 Route::get('/laporan/rekap/{tahun}/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
 Route::get('/laporan/rekap/{tahun}/bulan/export',[LaporanController::class, 'exportbln'])->name('export.bulan');
-
-
 
 Route::get('/login', [MainController::class, 'index']);
 Route::post('/login/check', [MainController::class, 'checklogin']);
