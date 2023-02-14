@@ -56,8 +56,8 @@
                         <input type="text" class="form-control" placeholder="Masukkan link sumber data" name="sumber_data" value="{{ old('sumber_data') }}">
                     </div>
 
-                    <input type="text" class="form-control" placeholder="Masukkan link sumber data" name="realisasi" hidden>
-                    <input type="text" class="form-control" placeholder="Masukkan link sumber data" name="capaian" hidden>
+                    <input type="number" class="form-control" placeholder="Masukkan link sumber data" name="realisasi" hidden>
+                    <input type="number" class="form-control" placeholder="Masukkan link sumber data" name="capaian" hidden>
 
                     <div class="mb-3">
                         <button type="submit" class="add1">Tambah</button>
