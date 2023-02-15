@@ -1,5 +1,6 @@
-@extends('layouts.sidebar')
+@if(isset(Auth::user()->email))
 
+@extends('layouts.sidebar')
 @section('content')
 <section class="main-panel">
     <div class="container">
@@ -9,9 +10,9 @@
             </a>
             <h3 class="fw-bolder mb-5">/ Edit Perjanjian Kinerja</h3>
         </div>
-        
+
         <div>
-            
+
             <form action="/perjanjian-kinerja/{{ $data['pk']->id }}" method="post" onsubmit="return alert('Data berhasil diedit')">
                 @csrf
                 @method('put')
@@ -27,19 +28,19 @@
                             <input type="number" class="form-control" placeholder="Masukkan tahun" name="tahun" value="{{ $data['pk']->tahun}}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="target" class="form-label">Target (%)</label> 
+                            <label for="target" class="form-label">Target (%)</label>
                             <input type="text" class="form-control" placeholder="Masukkan target" name="target" value="{{ $data['pk']->target}}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="pihak_satu" class="form-label">Pihak pertama</label> 
+                            <label for="pihak_satu" class="form-label">Pihak pertama</label>
                             <input type="text" class="form-control" placeholder="Masukkan pihak pertama" name="pihak_satu" value="{{ $data['pk']->pihak_satu}}">
                         </div>
                         <div class="mb-3">
-                            <label for="pihak_dua" class="form-label">Pihak Kedua </label> 
+                            <label for="pihak_dua" class="form-label">Pihak Kedua </label>
                             <input type="text" class="form-control" placeholder="Masukkan pihak kedua" name="pihak_dua" value="{{ $data['pk']->pihak_dua}}">
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal_ditetapkan" class="form-label">Tanggal ditetapkan </label> 
+                            <label for="tanggal_ditetapkan" class="form-label">Tanggal ditetapkan </label>
                             <input type="date" class="form-control" placeholder="Masukkan pihak kedua" name="tanggal_ditetapkan" value="{{ $data['pk']->tanggal_ditetapkan}}">
                         </div>
                         <div class="mb-3">
@@ -49,12 +50,20 @@
 
                 </div>
 
-            
+
             </form>
         </div>
-        
-            
-       
+
+
+
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif
+

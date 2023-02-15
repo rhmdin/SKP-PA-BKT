@@ -1,3 +1,5 @@
+@if(isset(Auth::user()->email))
+
 @extends('layouts.sidebar')
 
 @section('content')
@@ -9,9 +11,9 @@
             </a>
             <h3 class="fw-bolder mb-5">/ Tambah Indikator Kinerja</h3>
         </div>
-        
+
         <div>
-            
+
             <form action="/indikator-kinerja" method="post" onsubmit="return alert('Data berhasil ditambahkan')">
 
                 @csrf
@@ -36,24 +38,31 @@
                         <input type="text" class="form-control" placeholder="Masukkan indikator" name="isi_iku" value="{{ old('isi_iku') }}">
                     </div>
                     <div class="mb-3">
-                        <label for="penanggung_jawab" class="form-label">Penanggung Jawab </label> 
+                        <label for="penanggung_jawab" class="form-label">Penanggung Jawab </label>
                         <input type="text" class="form-control" placeholder="Masukkan penanggung jawab" name="penanggung_jawab" value="{{ old('penanggung_jawab') }}">
                     </div>
 
                     <div class="mb-3">
-                        <label for="sumber_data" class="form-label">Sumber Data </label> 
+                        <label for="sumber_data" class="form-label">Sumber Data </label>
                         <input type="text" class="form-control" placeholder="Masukkan sumber data" name="sumber_data" value="{{ old('sumber_data') }}">
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="add1">Tambah</button>
                     </div>
                 </div>
-            
+
             </form>
         </div>
-        
-            
-       
+
+
+
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

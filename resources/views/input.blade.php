@@ -1,3 +1,4 @@
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -21,7 +22,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Keterangan Input</th>
-                                
+
                                 <th style="width:70px">Opsi</th>
                             </tr>
                         </thead>
@@ -30,9 +31,9 @@
                                 $no=1;
                             @endphp
                             @foreach ($inputs as $input)
-                            <tr class="alert">                     
+                            <tr class="alert">
                                 <td class="text-center">{{ $no++ }}</td>
-                                <td>{{ $input->ket_input }}</td>                               
+                                <td>{{ $input->ket_input }}</td>
                                 <td>
                                     <a onclick="return confirm('Anda yakin menghapus data ini ?')" class="editb"
                                     href="{{ url()->current() }}/{{ $input->id }}/destroy"><i class='bx bx-trash' style="color: #A30D11;"></i></a></td>
@@ -46,3 +47,10 @@
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

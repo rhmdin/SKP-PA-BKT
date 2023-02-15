@@ -1,3 +1,4 @@
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -11,7 +12,7 @@
             <div class="col-md-12">
                 <div class="table-wrap">
                     <table id="table_id" class="table table-responsive-xl">
-                        
+
                         <thead>
                             <tr>
                                 <th>No </th>
@@ -31,23 +32,23 @@
                             $no = 1;
                             $no1 = 1;
                         @endphp
-                          
+
                             @foreach ($renstra as $iku)
                             @if ($iku->jenis == 'u')
-  
+
                             <tr class="alert">
-                                
+
                                 <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $iku->sasaran->isi_sasaran }}</td>
                                 <td>{{ $iku->isi_iku }}</td>
                                 <td>{{ $iku->sasaran->periode }}</td>
                                 @php
-                                    $periode = explode('-', $iku->sasaran->periode); 
+                                    $periode = explode('-', $iku->sasaran->periode);
                                 @endphp
                                 @foreach ($iku->detailIku->where('tahun', '>=', (int)$periode[0])->where('tahun', '<=', (int)$periode[1]) as $object)
                                 <td class="text-center">{{ $object->target }}</td>
                                 @endforeach
-                                    
+
                             </tr>
                             @endif
                             @endforeach
@@ -62,7 +63,7 @@
             <div class="col-md-12">
                 <div class="table-wrap">
                     <table id="table_id" class="table table-responsive-xl">
-                        
+
                         <thead>
                             <tr>
                                 <th>No </th>
@@ -81,23 +82,23 @@
                             $no = 1;
                             $no1 = 1;
                         @endphp
-                          
+
                             @foreach ($renstra as $iku)
                             @if ($iku->jenis == 'p')
-  
+
                             <tr class="alert">
-                                
+
                                 <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $iku->sasaran->isi_sasaran }}</td>
                                 <td>{{ $iku->isi_iku }}</td>
                                 <td>{{ $iku->sasaran->periode }}</td>
                                 @php
-                                    $periode = explode('-', $iku->sasaran->periode); 
+                                    $periode = explode('-', $iku->sasaran->periode);
                                 @endphp
                                 @foreach ($iku->detailIku->where('tahun', '>=', (int)$periode[0])->where('tahun', '<=', (int)$periode[1]) as $object)
                                 <td>{{ $object->target }}</td>
                                 @endforeach
-                                    
+
                             </tr>
                             @endif
                             @endforeach
@@ -109,3 +110,10 @@
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

@@ -1,3 +1,4 @@
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -36,7 +37,7 @@
                                 <td>
                                     <a class="editb" href="/perjanjian-kinerja/{{ $item->id}}"><i class='bx bx-edit' style="color: #e3b200;"></i></a>
                                     </td>
-                                   
+
                             </tr>
                             @endforeach
                             @endforeach
@@ -48,3 +49,10 @@
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

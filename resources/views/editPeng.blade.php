@@ -1,5 +1,6 @@
-@extends('layouts.sidebar')
+@if(isset(Auth::user()->email))
 
+@extends('layouts.sidebar')
 @section('content')
 <section class="main-panel">
     <div class="container">
@@ -9,8 +10,8 @@
             </a>
             <h3 class="fw-bolder mb-5">/ Edit Pengukuran Kinerja</h3>
         </div>
-        
-        <div>   
+
+        <div>
             <form action="/pengukuran-kinerja/{{ $data['peng']->id }}" method="post">
                 @csrf
                 @method('put')
@@ -39,19 +40,19 @@
                             <option value="November">November</option>
                             <option value="Desember">Desember</option>
 
-                        </select>                    
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="input_satu" class="form-label">Input 1</label> 
+                        <label for="input_satu" class="form-label">Input 1</label>
                         <input type="number" class="form-control" placeholder="Masukkan pembilang" name="input_satu" value="{{ $data['peng']->input_satu }}">
                     </div>
                     <div class="mb-3">
-                        <label for="input_dua" class="form-label">Input 2</label> 
+                        <label for="input_dua" class="form-label">Input 2</label>
                         <input type="number" class="form-control" placeholder="Masukkan penyebut" name="input_dua" value="{{ $data['peng']->input_dua }}">
                     </div>
-                    
+
                     <div class="mb-3">
-                        <label for="sumber_data" class="form-label">Sumber Data </label> 
+                        <label for="sumber_data" class="form-label">Sumber Data </label>
                         <input type="text" class="form-control" placeholder="Masukkan link sumber data" name="sumber_data" value="{{ $data['peng']->sumber_data }}">
                     </div>
 
@@ -62,12 +63,19 @@
                         <button type="submit" class="add1">Simpan</button>
                     </div>
                 </div>
-               
+
             </form>
         </div>
-        
-            
-       
+
+
+
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

@@ -1,3 +1,5 @@
+@if(isset(Auth::user()->email))
+
 @extends('layouts.sidebar')
 
 @section('content')
@@ -9,9 +11,9 @@
             </a>
             <h3 class="fw-bolder mb-5">/ Tambah Rencana Kinerja Tahunan</h3>
         </div>
-        
+
         <div>
-            
+
             <form action="/rencana-kinerja-tahunan/tambah" method="post" onsubmit="return alert('Data berhasil ditambahkan')">
 
                 @csrf
@@ -30,7 +32,7 @@
                             <input type="number" class="form-control" placeholder="Masukkan tahun" name="tahun" value="{{ old('tahun') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="target" class="form-label">Target (%)</label> 
+                            <label for="target" class="form-label">Target (%)</label>
                             <input type="text" class="form-control" placeholder="Masukkan target" name="target" value="{{ old('target') }}" required>
                         </div>
 
@@ -41,12 +43,19 @@
 
                 </div>
 
-            
+
             </form>
         </div>
-        
-            
-       
+
+
+
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

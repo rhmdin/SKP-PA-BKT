@@ -1,3 +1,4 @@
+@if(isset(Auth::user()->email))
 @extends('layouts.sidebar')
 
 @section('content')
@@ -37,7 +38,7 @@
                                 $no = 1;
                             @endphp
                             @foreach ($pengs as $item)
-                            <tr class="alert">                     
+                            <tr class="alert">
                                 <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $item->detailIku->iku->isi_iku }}</td>
                                 <td>{{ $item->detailIku->target }}</td>
@@ -52,7 +53,7 @@
                                     <a class="editb" href="/pengukuran-kinerja/{{ $item->id}}"><i class='bx bx-edit' style="color: #e3b200;"></i></a>
                                     <a onclick="return confirm('Anda yakin menghapus data ini ?')" class="editb"
                                     href="/pengukuran-kinerja/{{$item->id}}/destroy"><i class='bx bx-trash' style="color: #A30D11;"></i></a></td>
-                                 
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -63,3 +64,10 @@
     </div>
 </section>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif

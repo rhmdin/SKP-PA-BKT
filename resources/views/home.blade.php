@@ -1,3 +1,5 @@
+@if(isset(Auth::user()->email))
+
 @extends('layouts.app')
 
 @section('content')
@@ -21,3 +23,10 @@
     </div>
 </div>
 @endsection
+@else
+
+<script>
+    window.location = "/login";
+    confirm("Harap Login Dahulu!");
+</script>
+@endif
