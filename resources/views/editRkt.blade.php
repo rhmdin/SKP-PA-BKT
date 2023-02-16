@@ -23,7 +23,7 @@
                             <label for="id_iku" class="form-label">Indikator Kinerja</label>
                             <select name="id_iku" class="d-flex form-control minimal">
                                 @foreach ($data['iku'] as $iku )
-                                <option value="{{ $iku->id }}">{{ $iku->isi_iku }}</option>
+                                <option value="{{ $iku->id }}" @if($iku->id == $data['pk']->id_iku) selected @endif>{{ $iku->isi_iku }}</option>
                                 @endforeach
                             </select>
                         </div>

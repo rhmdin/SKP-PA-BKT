@@ -61,6 +61,7 @@ class IkuController extends Controller
     public function edit(Iku $iku)
     {
         $sasarans = Sasaran::all();
+        
         $data = [
             'sasarans' => $sasarans,
             'iku' => $iku

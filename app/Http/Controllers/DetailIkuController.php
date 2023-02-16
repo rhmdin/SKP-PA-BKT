@@ -60,12 +60,14 @@ class DetailIkuController extends Controller
     public function edit(DetailIku $rkt)
     {
         $iku = Iku::all();
+        $id = $rkt->id_iku;
+        $isi = Iku::where('id', $id)->get('isi_iku');
         $data = [
             'pk' => $rkt,
             'iku' => $iku
         ];
-        //dd($data['iku']->id);
-        return view('editRkt', compact('data'));
+        //dd($isi);
+        return view('editRkt', compact('data', 'isi'));
     }
 
     public function update(Request $request, DetailIku $rkt)
