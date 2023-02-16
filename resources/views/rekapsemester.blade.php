@@ -102,8 +102,8 @@ use App\Models\Pengukuran;
                                                         $jmlcapai1=0;
                                                         $bulan2 = 1;
                                                         $jmlinput12 = round(Pengukuran::where('id_detail', $detailiku->id)->sum('input_satu'),2);
-                                                        $real2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('realisasi'),2);
-                                                        $capai2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('capaian'),2);
+                                                        $jmlreal2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('realisasi'),2);
+                                                        $jmlcapai2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('capaian'),2);
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                         @php
@@ -118,12 +118,32 @@ use App\Models\Pengukuran;
                                                             @endphp
                                                             @endif
                                                     @endforeach
+                                                    @if($jmlreal1!=0)
+                                                            @php
+                                                            $jmlreal1 = round($jmlreal1/$bulan1,2);
+                                                            @endphp
+                                                    @endif
+                                                    @if($jmlcapai1!=0)
+                                                            @php
+                                                            $jmlcapai1 = round($jmlcapai1/$bulan1,2);
+                                                            @endphp
+                                                    @endif
+                                                    @if($jmlreal2!=0)
+                                                            @php
+                                                            $jmlreal2 = round($jmlreal2,2);
+                                                            @endphp
+                                                    @endif
+                                                    @if($jmlcapai2!=0)
+                                                            @php
+                                                            $jmlcapai2 = round($jmlcapai2,2);
+                                                            @endphp
+                                                    @endif
                                                     <td>{{ $jmlinput11 }}</td>
-                                                    <td rowspan="2">{{round($jmlreal1/$bulan1,2)}}</td>
-                                                    <td rowspan="2">{{ round($jmlcapai1/$bulan1,2) }}</td>
+                                                    <td rowspan="2">{{$jmlreal1}}</td>
+                                                    <td rowspan="2">{{$jmlcapai1 }}</td>
                                                     <td>{{$jmlinput12 }}</td>
-                                                    <td rowspan="2">{{ $real2 }}</td>
-                                                    <td rowspan="2">{{ $capai2 }}</td>
+                                                    <td rowspan="2">{{$jmlreal2}}</td>
+                                                    <td rowspan="2">{{$jmlcapai2}}</td>
                                                 @else
                                                     @for ($i=1;$i<=2;$i++){
                                                         <td>-</td>
@@ -291,12 +311,32 @@ use App\Models\Pengukuran;
                                                             @endphp
                                                             @endif
                                                     @endforeach
+                                                    @if($jmlreal1!=0)
+                                                            @php
+                                                            $jmlreal1 = round($jmlreal1/$bulan1,2);
+                                                            @endphp
+                                                    @endif
+                                                    @if($jmlcapai1!=0)
+                                                            @php
+                                                            $jmlcapai1 = round($jmlcapai1/$bulan1,2);
+                                                            @endphp
+                                                    @endif
+                                                    @if($jmlreal2!=0)
+                                                            @php
+                                                            $jmlreal2 = round($jmlreal2/$bulan2,2);
+                                                            @endphp
+                                                    @endif
+                                                    @if($jmlcapai2!=0)
+                                                            @php
+                                                            $jmlcapai2 = round($jmlcapai2/$bulan2,2);
+                                                            @endphp
+                                                    @endif
                                                     <td>{{ $jmlinput11 }}</td>
-                                                    <td rowspan="2">{{round($jmlreal1/$bulan1,2)}}</td>
-                                                    <td rowspan="2">{{ round($jmlcapai1/$bulan1,2) }}</td>
+                                                    <td rowspan="2">{{$jmlreal1}}</td>
+                                                    <td rowspan="2">{{$jmlcapai1 }}</td>
                                                     <td>{{$jmlinput12 }}</td>
-                                                    <td rowspan="2">{{round($jmlreal2/$bulan2,2)}}</td>
-                                                    <td rowspan="2">{{ round($jmlcapai2/$bulan2,2) }}</td>
+                                                    <td rowspan="2">{{$jmlreal2}}</td>
+                                                    <td rowspan="2">{{$jmlcapai2}}</td>
                                                 @else
                                                     @for ($i=1;$i<=2;$i++){
                                                         <td>-</td>
