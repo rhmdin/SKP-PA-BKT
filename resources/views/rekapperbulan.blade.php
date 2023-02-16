@@ -146,7 +146,7 @@
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                             @php
-                                                                $rata2input1 = round((($rata2input1 + $ukur->input_satu) / ($bulan)),2);
+                                                                $rata2input1 = round((($rata2input1 + $ukur->input_satu) ),2);
                                                                 $rata2real = round((($rata2real + $ukur->realisasi) / ($bulan)),2);
                                                                 $rata2capai = round((($rata2capai + $ukur->capaian) / ($bulan)),2);
                                                                 $bulan++;
@@ -196,7 +196,7 @@
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                             @php
-                                                                $rata2input2 = round((($rata2input2 + $ukur->input_dua) / ($bulan)),2);
+                                                                $rata2input2 = round((($rata2input2 + $ukur->input_dua)),2);
                                                                 $bulan++;
                                                             @endphp
                                                                 <td>{{ $rata2input2 }}</td>
