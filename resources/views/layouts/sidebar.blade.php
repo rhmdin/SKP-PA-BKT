@@ -56,7 +56,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ strpos(Route::currentRouteName(), 'pengukuran') === 0 ? 'active' : '' }}">
+                <li class="nav-item {{ strpos(Route::currentRouteName(), 'pengukuran') === 0 || strpos(Route::currentRouteName(), 'tambahPeng') === 0 || strpos(Route::currentRouteName(), 'editPeng') === 0? 'active' : '' }}">
                     <a href="{{route('pengukuran')}}" class="nav-link">
                         <i class="bx bx-objects-vertical-bottom"></i>
                         <p>Pengukuran</p>

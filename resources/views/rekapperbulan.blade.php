@@ -19,7 +19,7 @@
         <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja Akumulatif per Bulan Tahun {{ $tahun }}</h3>
         <h3 class="mt-4" >I. Akumulatif</h3>
 
-        <div class="row" style="margin-top:2%">
+        <div class="row mt-3" >
             <div class="col-md-12">
                 <a href="{{route('laporan')}}" style="text-decoration: none;">
                     <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
@@ -27,10 +27,9 @@
                 <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
             </div>
         </div>
-        <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <div class="table-wrap">
-                            <br>
                             <table class="table table-bordered" id="akumulatif"
                                     style="margin-top:2%;background: white;
                                     text-align: center;
@@ -222,22 +221,20 @@
                             </script>
                         </div>
                     </div>
-        </div>
-
-                <h3 class="mt-4" >II. Parsial</h3>
-
-                <div class="row" style="margin-top:2%">
-                    <div class="col-md-12">
-                        <a href="{{route('laporan')}}" style="text-decoration: none;">
-                            <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
-                        </a>
-                        <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
-                    </div>
                 </div>
+
+        <h3 class="mt-4" >II. Parsial</h3>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-12">
+                <a href="{{route('laporan')}}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
+                </a>
+                <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
+            </div>
+        </div>                 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-wrap">
-                            <br>
+                        <div class="table-wrap">                          
                             <table class="table table-bordered" id="parsial"
                                     style="margin-top:2%;background: white;
                                     text-align: center;

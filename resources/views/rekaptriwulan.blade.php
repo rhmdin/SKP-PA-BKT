@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan</title>
+    <title>Rekap Triwulan</title>
     <link rel="stylesheet" href="{{ asset('/css/laporan.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -36,6 +36,7 @@
                                         <th rowspan="3">No</th>
                                         <th rowspan="3" style="width: 10cm;" >Sasaran Strategis</th>
                                         <th rowspan="3">Indikator Kinerja</th>
+                                        <th rowspan="3">Jenis</th>
                                         <th rowspan="3">Target (%)</th>
                                         <th rowspan="3">Keterangan Input</th>
                                         <th colspan="12">Realisasi per Triwulan (3 Bulan)</th>
@@ -68,9 +69,23 @@
                                     
                                         @foreach ($detailiku as $iku)
                                         <tr>
+                                            @if($iku->iku->jenis==="u")
+                                            @php
+                                            $jenis = "umum";
+                                            @endphp
+                                        @elseif($iku->iku->jenis==="p")
+                                            @php
+                                            $jenis = "pendukung";
+                                            @endphp
+                                        @else
+                                            @php
+                                            $jenis = " - ";
+                                            @endphp
+                                        @endif
                                             <td rowspan="2">{{ $no1++ }}</td>
                                             <td rowspan="2">{{ $iku->iku->sasaran->isi_sasaran }}</td>
                                             <td rowspan="2">{{ $iku->iku->isi_iku }}</td>
+                                            <td rowspan="2">{{ $jenis }}</td>
                                             <td rowspan="2">{{ $iku->target }}</td>
                                             @if (count($iku->iku->inputIku) != 0)
                                             @foreach ($iku->iku->inputIku as $index => $item)
@@ -277,9 +292,23 @@
                                     @endphp
                                         @foreach ($detailiku as $iku)
                                         <tr>
+                                            @if($iku->iku->jenis==="u")
+                                            @php
+                                            $jenis = "umum";
+                                            @endphp
+                                        @elseif($iku->iku->jenis==="p")
+                                            @php
+                                            $jenis = "pendukung";
+                                            @endphp
+                                        @else
+                                            @php
+                                            $jenis = " - ";
+                                            @endphp
+                                        @endif
                                             <td rowspan="2">{{ $no++}}</td>
                                             <td rowspan="2">{{ $iku->iku->sasaran->isi_sasaran }}</td>
                                             <td rowspan="2">{{ $iku->iku->isi_iku }}</td>
+                                            <td rowspan="2">{{ $jenis }}</td>
                                             <td rowspan="2">{{ $iku->target }}</td>
                                             
                                             @if (count($iku->iku->inputIku) != 0)
