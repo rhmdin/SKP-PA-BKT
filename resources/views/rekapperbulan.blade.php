@@ -138,19 +138,24 @@
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
-                                                        $bulan = 1;
-                                                        $rata2input1=0;
+                                                        $bulan = 0;
+                                                        $jmlinput1=0;
+                                                        $jmlreal=0;
+                                                        $jmlcapai=0;
                                                         $rata2real=0;
                                                         $rata2capai=0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                             @php
-                                                                $rata2input1 = round((($rata2input1 + $ukur->input_satu) ),2);
-                                                                $rata2real = round((($rata2real + $ukur->realisasi) / ($bulan)),2);
-                                                                $rata2capai = round((($rata2capai + $ukur->capaian) / ($bulan)),2);
                                                                 $bulan++;
+                                                                $jmlinput1 = round($jmlinput1 + $ukur->input_satu,2);
+                                                                $jmlreal = round($jmlreal + $ukur->realisasi,2);
+                                                                $jmlcapai = round($jmlcapai + $ukur->capaian,2);
+
+                                                                $rata2real = round($jmlreal/$bulan,2);
+                                                                $rata2capai = round($jmlcapai/$bulan,2);
                                                             @endphp
-                                                                <td>{{ $rata2input1 }}</td>
+                                                                <td>{{ $jmlinput1 }}</td>
                                                                 <td rowspan="2">{{ $rata2real }}</td>
                                                                 <td rowspan="2">{{ $rata2capai }}</td>
                                                     @endforeach
@@ -231,10 +236,10 @@
                 </a>
                 <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
             </div>
-        </div>                 
+        </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-wrap">                          
+                        <div class="table-wrap">
                             <table class="table table-bordered" id="parsial"
                                     style="margin-top:2%;background: white;
                                     text-align: center;
