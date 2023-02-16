@@ -61,13 +61,14 @@ class IkuController extends Controller
     public function edit(Iku $iku)
     {
         $sasarans = Sasaran::all();
-        
+        $id = $iku->id_sasaran;
+        $isi_sasaran = Sasaran::where('id', $id)->get('isi_sasaran');
         $data = [
             'sasarans' => $sasarans,
             'iku' => $iku
         ];
         //dd($data['iku']->id);
-        return view('editIku', compact('data'));
+        return view('editIku', compact('data', 'isi_sasaran'));
     }
 
     public function update(Request $request, Iku $iku)

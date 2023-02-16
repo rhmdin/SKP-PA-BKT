@@ -18,15 +18,15 @@
                         <label for="id_sasaran" class="form-label">Sasaran :</label>
                         <select name="id_sasaran" class="d-flex form-control minimal">
                             @foreach ($data['sasarans'] as $sasaran)
-                            <option value="{{ $sasaran->id }}">{{ $sasaran->isi_sasaran }}</option>
+                            <option value="{{ $sasaran->id }}" @if($sasaran->id == $data['iku']->id_sasaran) selected @endif>{{ $sasaran->isi_sasaran }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="jenis" class="form-label">Jenis Indikator : </label>
                         <select name="jenis" class="d-flex form-control minimal">
-                            <option value="u">utama</option>
-                            <option value="p">pendukung</option>
+                            <option value="u" @if($data['iku']->jenis == 'u') selected @endif>utama</option>
+                            <option value="p"@if($data['iku']->jenis == 'p') selected @endif>pendukung</option>
                         </select>
                     </div>
                     <div class="mb-3">
