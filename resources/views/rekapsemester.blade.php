@@ -18,7 +18,6 @@ use App\Models\Pengukuran;
 
         <h3 class=" " style="margin-top:1%">Hasil Pengukuran Kinerja per Semester Tahun 2023</h3>
         <h3 class="mt-4" >I. Akumulatif</h3>
-
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
                         <a href="{{route('laporan')}}" style="text-decoration: none;">
@@ -97,14 +96,14 @@ use App\Models\Pengukuran;
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
-                                                        $bulan1 = 1;
-                                                        $rata2input11=0;
-                                                        $rata2real1=0;
-                                                        $rata2capai1=0;
+                                                        $bulan1 = 0;
+                                                        $jmlinput11=0;
+                                                        $jmlreal1=0;
+                                                        $jmlcapai1=0;
                                                         $bulan2 = 1;
-                                                        $rata2input12 = round(Pengukuran::where('id_detail', $detailiku->id)->sum('input_satu'),2);
-                                                        $rata2real2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('realisasi'),2);
-                                                        $rata2capai2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('capaian'),2);
+                                                        $jmlinput12 = round(Pengukuran::where('id_detail', $detailiku->id)->sum('input_satu'),2);
+                                                        $real2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('realisasi'),2);
+                                                        $capai2 = round(Pengukuran::where('id_detail', $detailiku->id)->avg('capaian'),2);
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                         @php
@@ -112,19 +111,19 @@ use App\Models\Pengukuran;
                                                         @endphp
                                                             @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
                                                             @php
-                                                                $rata2input11 = round((($rata2input11 + $ukur->input_satu)),2);
-                                                                $rata2real1 = round((($rata2real1 + $ukur->realisasi) / ($bulan1)),2);
-                                                                $rata2capai1 = round((($rata2capai1 + $ukur->capaian) / ($bulan1)),2);
                                                                 $bulan1++;
+                                                                $jmlinput11 = round((($jmlinput11 + $ukur->input_satu)),2);
+                                                                $jmlreal1 = round((($jmlreal1 + $ukur->realisasi)),2);
+                                                                $jmlcapai1 = round((($jmlcapai1 + $ukur->capaian)),2);
                                                             @endphp
                                                             @endif
                                                     @endforeach
-                                                    <td>{{ $rata2input11 }}</td>
-                                                    <td rowspan="2">{{ $rata2real1 }}</td>
-                                                    <td rowspan="2">{{ $rata2capai1 }}</td>
-                                                    <td>{{ $rata2input12 }}</td>
-                                                    <td rowspan="2">{{ $rata2real2 }}</td>
-                                                    <td rowspan="2">{{ $rata2capai2 }}</td>
+                                                    <td>{{ $jmlinput11 }}</td>
+                                                    <td rowspan="2">{{round($jmlreal1/$bulan1,2)}}</td>
+                                                    <td rowspan="2">{{ round($jmlcapai1/$bulan1,2) }}</td>
+                                                    <td>{{$jmlinput12 }}</td>
+                                                    <td rowspan="2">{{ $real2 }}</td>
+                                                    <td rowspan="2">{{ $capai2 }}</td>
                                                 @else
                                                     @for ($i=1;$i<=2;$i++){
                                                         <td>-</td>
@@ -143,25 +142,23 @@ use App\Models\Pengukuran;
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
-                                                    $rata2input22 = round(Pengukuran::where('id_detail', $detailiku->id)->sum('input_dua'),2);
+                                                    $jmlinput22 = round(Pengukuran::where('id_detail', $detailiku->id)->sum('input_dua'),2);
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
-                                                    $bulan1 = 1;
-                                                    $rata2input21=0;
-                                                    $bulan2 = 1;
+                                                    $jmlinput21=0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                         @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
                                                         @php
-                                                            $rata2input11 = round((($rata2input11 + $ukur->input_satu)),2);
-                                                            $rata2input21 = (($rata2input21 + $ukur->input_dua));
                                                             $bulan1++;
+                                                            $jmlinput11 = round((($jmlinput11 + $ukur->input_satu)),2);
+                                                            $jmlinput21 = (($jmlinput21 + $ukur->input_dua));
                                                         @endphp
                                                         @endif
                                                     @endforeach
-                                                    <td>{{ $rata2input21 }}</td>
-                                                    <td>{{ $rata2input22 }} </td>
+                                                    <td>{{ $jmlinput21 }}</td>
+                                                    <td>{{ $jmlinput22 }} </td>
                                                     @else
                                                         @for ($i=1;$i<=2;$i++){
                                                             <td>-</td>
@@ -189,18 +186,17 @@ use App\Models\Pengukuran;
                         </div>
                     </div>
         </div>
-                <h3 class="mt-4" >II. Parsial</h3>
-
-                <div class="row" style="margin-top:2%">
-                    <div class="col-md-12">
-                                <a href="{{route('laporan')}}" style="text-decoration: none;">
-                                    <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
-                                </a>
-                            <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
+        <h3 class="mt-4" >II. Parsial</h3>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-12">
+                        <a href="{{route('laporan')}}" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-dark btn-sm">BACK</button>
+                        </a>
+                    <button id="exportexcel" type="button" class="btn-outline-success btn btn-sm">EXPORT TO EXCEL</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                         <div class="table-wrap">
                             <table class="table table-bordered" id="akumulatif"
                                     style="margin-top:2%;background: white;
@@ -271,36 +267,36 @@ use App\Models\Pengukuran;
                                                     @php
                                                         $bulan1 = 0;
                                                         $jmlinput11=0;
-                                                        $rata2real1=0;
-                                                        $rata2capai1=0;
+                                                        $jmlreal1=0;
+                                                        $jmlcapai1=0;
                                                         $bulan2 = 0;
-                                                        $jmlinput12=0;
-                                                        $rata2real2=0;
-                                                        $rata2capai2=0;
+                                                        $jmlinput12 = 0;
+                                                        $jmlreal2 = 0;
+                                                        $jmlcapai2 = 0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                             @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
                                                             @php
                                                                 $bulan1++;
-                                                                $jmlinput11=round($jmlinput11+$ukur->input_satu,2);
-                                                                $rata2real1=round((($rata2real1+$ukur->realisasi)/$bulan1),2);
-                                                                $rata2capai1=round((($rata2capai1+$ukur->capaian)/$bulan1),2);
+                                                                $jmlinput11 = round((($jmlinput11 + $ukur->input_satu)),2);
+                                                                $jmlreal1 = round((($jmlreal1 + $ukur->realisasi)),2);
+                                                                $jmlcapai1 = round((($jmlcapai1 + $ukur->capaian)),2);
                                                             @endphp
                                                             @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
                                                             @php
                                                                 $bulan2++;
-                                                                $jmlinput12=round($jmlinput12+$ukur->input_satu,2);
-                                                                $rata2real2=round((($rata2real2+$ukur->realisasi)/$bulan2),2);
-                                                                $rata2capai2=round((($rata2capai2+$ukur->capaian)/$bulan2),2);
+                                                                $jmlinput12 = round((($jmlinput12 + $ukur->input_satu)),2);
+                                                                $jmlreal2 = round((($jmlreal2 + $ukur->realisasi)),2);
+                                                                $jmlcapai2 = round((($jmlcapai2 + $ukur->capaian)),2);
                                                             @endphp
                                                             @endif
                                                     @endforeach
                                                     <td>{{ $jmlinput11 }}</td>
-                                                    <td rowspan="2">{{ $rata2real1 }}</td>
-                                                    <td rowspan="2">{{ $rata2capai1 }}</td>
-                                                    <td>{{ $jmlinput12 }}</td>
-                                                    <td rowspan="2">{{ $rata2real2 }}</td>
-                                                    <td rowspan="2">{{ $rata2capai2 }}</td>
+                                                    <td rowspan="2">{{round($jmlreal1/$bulan1,2)}}</td>
+                                                    <td rowspan="2">{{ round($jmlcapai1/$bulan1,2) }}</td>
+                                                    <td>{{$jmlinput12 }}</td>
+                                                    <td rowspan="2">{{round($jmlreal2/$bulan2,2)}}</td>
+                                                    <td rowspan="2">{{ round($jmlcapai2/$bulan2,2) }}</td>
                                                 @else
                                                     @for ($i=1;$i<=2;$i++){
                                                         <td>-</td>
@@ -319,24 +315,21 @@ use App\Models\Pengukuran;
                                                 @php
                                                     $jml_ukur = Pengukuran::where('id_detail', $detailiku->id)->count();
                                                     $ukur = Pengukuran::where('id_detail', $detailiku->id)->get();
+                                                    $jmlinput22 = round(Pengukuran::where('id_detail', $detailiku->id)->sum('input_dua'),2);
                                                 @endphp
                                                 @if ($jml_ukur>0)
                                                     @php
-                                                    $bulan1 = 1;
                                                     $jmlinput21=0;
-                                                    $bulan2 = 1;
                                                     $jmlinput22=0;
                                                     @endphp
                                                     @foreach ($ukur as $ukur)
                                                         @if($ukur->bulan==="Januari"||$ukur->bulan==="Februari"||$ukur->bulan==="Maret"||$ukur->bulan==="April"||$ukur->bulan==="Mei"||$ukur->bulan==="Juni")
                                                         @php
                                                             $jmlinput21 = round(($jmlinput21 + $ukur->input_dua),2);
-                                                            $bulan1++;
                                                         @endphp
                                                         @elseif($ukur->bulan==="Juli"||$ukur->bulan==="Agustus"||$ukur->bulan==="September"||$ukur->bulan==="Oktober"||$ukur->bulan==="November"||$ukur->bulan==="Desember")
                                                         @php
-                                                            $jmlinput22 = round(($jmlinput22 + $ukur->input_dua),2);;
-                                                            $bulan2++;
+                                                            $jmlinput22 = round(($jmlinput22 + $ukur->input_dua),2);
                                                         @endphp
                                                         @endif
                                                     @endforeach
@@ -368,8 +361,7 @@ use App\Models\Pengukuran;
                             </script>
                         </div>
                     </div>
-                </div>
-
+        </div>
     </body>
 </html>
 
