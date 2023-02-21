@@ -12,7 +12,6 @@
             <div class="col-md-12">
                 <div class="table-wrap">
                     <table id="table_id" class="table table-responsive-xl">
-                        <h3 class="jenis">I. Indikator Utama</h3>
                         <thead>
                             <tr>
                                 <th>No </th>

@@ -19,7 +19,6 @@
                 </a>
             </button>
         </div>
-        <h3 class="jenis">I. Indikator Utama</h3>
         <div class="row">
             <div class="col-md-12">
                 <div class="table-wrap">

@@ -7,9 +7,9 @@
     <div class="container">
         <div class="section-title d-flex">
             <a href="/indikator-kinerja" class="url">
-                <h3 class="fw-bolder mb-5 font-weight-normal">Indikator Kinerja &nbsp </h3>
+                <h3 class="fw-bolder mb-5 ">Indikator Kinerja &nbsp </h3>
             </a>
-            <h3 class="fw-bolder mb-5">/ Tambah Indikator Kinerja</h3>
+            <h3 class="fw-bolder mb-5">/ Tambah</h3>
         </div>
 
         <div>

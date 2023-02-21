@@ -4,13 +4,21 @@
 @section('content')
 <section class="main-panel">
     <div class="container">
-        <div class="section-title">
-            <h3 class="fw-bolder mb-4">Input Indikator</h3>
+        <div class="section-title d-flex">
+            <a href="/indikator-kinerja" class="url">
+                <h4 class="fw-bolder mb-5 ">Indikator Kinerja&nbsp</h3>
+            </a>
+            <h4 class="fw-bolder mb-5">/Input</h4>
         </div>
         <div class="button-add">
             <button class="add1">
-                <a href="{{ url()->current() }}/tambah" class="">
-                    Tambah
+                <a
+                    @if($jmlinput<2)
+                        href="{{ url()->current() }}/tambah"
+                    @else
+                        onclick="alert('Jumlah input per iku maksimal 2!');"
+                    @endif class="">
+                    Rambah
                 </a>
             </button>
         </div>

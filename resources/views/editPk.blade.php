@@ -6,9 +6,9 @@
     <div class="container">
         <div class="section-title d-flex">
             <a href="/perjanjian-kinerja" class="url">
-                <h3 class="fw-bolder mb-5 font-weight-normal">Perjanjian Kinerja &nbsp </h3>
+                <h4 class="fw-bolder mb-5 ">Perjanjian Kinerja </h4>
             </a>
-            <h3 class="fw-bolder mb-5">/ Edit Perjanjian Kinerja</h3>
+            <h4 class="fw-bolder mb-5">/Edit</h4>
         </div>
 
         <div>

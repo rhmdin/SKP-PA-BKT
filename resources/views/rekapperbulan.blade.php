@@ -167,7 +167,7 @@
                                                         $sisabln = 12 - $bulan;
                                                     @endphp
                                                     @if($sisabln > 0){
-                                                        @for ($i = $sisabln; $i >= 0; $i--)
+                                                        @for ($i = $sisabln; $i > 0; $i--)
                                                             <td> - </td>
                                                             <td rowspan="2"> - </td>
                                                             <td rowspan="2"> - </td>

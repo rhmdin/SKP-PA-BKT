@@ -7,9 +7,9 @@
     <div class="container">
         <div class="section-title d-flex">
             <a href="/pengukuran-kinerja" class="url">
-                <h3 class="fw-bolder mb-5 font-weight-normal">Pengukuran &nbsp </h3>
+                <h4 class="fw-bolder mb-5 ">Pengukuran&nbsp</h4>
             </a>
-            <h3 class="fw-bolder mb-5">/ Tambah Pengukuran</h3>
+            <h4 class="fw-bolder mb-5">/Tambah</h4>
         </div>
 
         <div>

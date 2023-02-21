@@ -7,7 +7,6 @@
         <div class="section-title">
             <h3 class="fw-bolder mb-4">Rencana Kinerja Tahunan</h3>
         </div>
-        <h3 class="jenis">I. Indikator Utama</h3>
         <div class="button-add">
             <button class="add1">
                 <a href="{{route('tambahRkt')}}" class="">
