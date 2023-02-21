@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailIku;
 use App\Models\Iku;
 use App\Models\InputIku;
+use App\Models\Pengukuran;
 use App\Models\Sasaran;
 use Illuminate\Http\Request;
 
@@ -90,7 +92,18 @@ class IkuController extends Controller
 
     public function destroy(Iku $iku)
     {
+        $id = $iku->id;
+        $inputs = InputIku::where('id_iku', $id)->get();
+        $detail = DetailIku::where('id_iku', $id)->get();
+        foreach ($detail as $det) {
+            $det_id = Pengukuran::where('id_detail', $det->id)->get();
+            $det_id->each->delete();    
+        }
+
+        $detail->each->delete();
+        $inputs->each->delete();
         $iku->delete();
+        
 
         return redirect('/indikator-kinerja');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailIku;
 use App\Models\Iku;
+use App\Models\Pengukuran;
 use Illuminate\Http\Request;
 
 class DetailIkuController extends Controller
@@ -87,6 +88,9 @@ class DetailIkuController extends Controller
 
     public function destroy(DetailIku $rkt)
     {
+        $id = $rkt->id;
+        $peng = Pengukuran::where('id_detail', $id)->get();
+        $peng->each->delete();
         $rkt->delete();
 
         return redirect('/rencana-kinerja-tahunan');
