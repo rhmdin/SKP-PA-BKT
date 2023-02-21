@@ -98,10 +98,11 @@
                                     </tr>
                                 </thead>
                                 <tbody style="background: white; ">
-                                    <?php
-                                        $no = 1;
-                                    ?>
+
                                     @if ($jml_dtl > 0 )
+                                        <?php
+                                            $no = 0;
+                                        ?>
                                         @foreach ($detail as $detailiku)
                                             <tr>
                                                 @if($detailiku->iku->jenis==="u")
@@ -117,7 +118,10 @@
                                                     $jenis = " - ";
                                                     @endphp
                                                 @endif
-                                                <td rowspan="2">{{ $detailiku->iku->id }}</td>
+                                                @php
+                                                 $no++;
+                                                @endphp
+                                                <td rowspan="2">{{ $no }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
                                                 <td rowspan="2">{{ $jenis }}</td>
@@ -308,10 +312,10 @@
                                     </tr>
                                 </thead>
                                 <tbody style="background: white; ">
-                                    <?php
-                                        $no = 1;
-                                    ?>
                                     @if ($jml_dtl > 0 )
+                                    <?php
+                                        $no = 0;
+                                    ?>
                                         @foreach ($detail as $detailiku)
                                             <tr>
                                                 @if($detailiku->iku->jenis==="u")
@@ -327,7 +331,10 @@
                                                     $jenis = " - ";
                                                     @endphp
                                                 @endif
-                                                <td rowspan="2">{{ $detailiku->iku->id }}</td>
+                                                @php
+                                                $no++;
+                                                @endphp
+                                                <td rowspan="2">{{ $no }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->sasaran->isi_sasaran }}</td>
                                                 <td rowspan="2">{{ $detailiku->iku->isi_iku }}</td>
                                                 <td rowspan="2">{{ $jenis }}</td>
