@@ -3,6 +3,11 @@
 
 @section('content')
 <section class="main-panel">
+    @if ($message = Session::get('successdelete'))
+         <script>
+          alert("IKU berhasil dihapus");
+        </script>
+    @endif
     <div class="container">
         <div class="section-title">
             <h3 class="fw-bolder mb-4">Daftar Indikator Kinerja</h3>
@@ -53,7 +58,7 @@
                                     <a onclick="return confirm('Anda yakin menghapus data ini ?')" class="editb"
                                     href="/indikator-kinerja/{{$iku->id}}/destroy"><i class='bx bx-trash' style="color: #A30D11;"></i></a></td>
                             </tr>
-                        
+
                             @endforeach
 
                         </tbody>

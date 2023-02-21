@@ -8,32 +8,33 @@ use App\Models\InputIku;
 use App\Models\Pengukuran;
 use App\Models\Sasaran;
 use Illuminate\Http\Request;
+use Exception;
 
 class IkuController extends Controller
 {
     public function getIku()
     {
         $ikus = Iku::all();
-       
+
         return view('iku', compact('ikus'));
     }
 
     public function getRenstra()
     {
         $renstra = Iku::all();
-        
+
         //dd($ikus);
         return view('renstra', compact('renstra'));
     }
     public function getRkt()
     {
         $rkt = Iku::all();
-        
+
         //dd($ikus);
         return view('rkt', compact('rkt'));
     }
 
-    
+
 
     public function store(Request $request)
     {
@@ -92,20 +93,24 @@ class IkuController extends Controller
 
     public function destroy(Iku $iku)
     {
-        $id = $iku->id;
-        $inputs = InputIku::where('id_iku', $id)->get();
-        $detail = DetailIku::where('id_iku', $id)->get();
-        foreach ($detail as $det) {
-            $det_id = Pengukuran::where('id_detail', $det->id)->get();
-            $det_id->each->delete();    
+        try{
+            $id = $iku->id;
+            $inputs = InputIku::where('id_iku', $id)->get();
+            $detail = DetailIku::where('id_iku', $id)->get();
+            foreach ($detail as $det) {
+                $det_id = Pengukuran::where('id_detail', $det->id)->get();
+                $det_id->each->delete();
+            }
+
+            $detail->each->delete();
+            $inputs->each->delete();
+            $iku->delete();
+
+            return redirect('/indikator-kinerja')->with('successdelete', 'IKU berhasil dihapus!');
         }
-
-        $detail->each->delete();
-        $inputs->each->delete();
-        $iku->delete();
-        
-
-        return redirect('/indikator-kinerja');
+        catch(Exception $e){
+            return redirect('/indikator-kinerja')->with('errdelete', 'IKU gagal dihapus!');
+        }
     }
 
     public function getInput(Iku $iku)
@@ -131,7 +136,7 @@ class IkuController extends Controller
         $validated = $request->validate([
             'id_iku' => 'required',
             'ket_input' => 'required'
-            
+
         ]);
 
         // menyimpan data produk
@@ -143,7 +148,7 @@ class IkuController extends Controller
         return view('input', compact('inputs'));
     }
 
-    
+
     public function destroyInput(iku $iku, InputIku $id)
     {
         $id->delete();
