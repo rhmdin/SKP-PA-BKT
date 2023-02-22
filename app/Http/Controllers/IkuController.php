@@ -208,9 +208,11 @@ class IkuController extends Controller
             InputIku::create($validated);
 
             $inputs = InputIku::where('id_iku', $id)->get();
+            $jmlinput = InputIku::where('id_iku', $id)->count();
+
             $ikus = Iku::all();
             //dd($ikus);
-            return view('input', compact('inputs'));
+            return view('input', compact('inputs', 'jmlinput'));
         }
         catch(Exception $e)
         {

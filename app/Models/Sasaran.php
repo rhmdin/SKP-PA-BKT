@@ -9,6 +9,8 @@ class Sasaran extends Model
 {
     use HasFactory;
     protected $table = 'sasaran';
+    protected $fillable = ['id_tujuan', 'isi_sasaran', 'periode'];
+
 
     public function tujuan()
     {
