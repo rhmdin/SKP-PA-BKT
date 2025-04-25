@@ -34,6 +34,11 @@
                     <ul class="treeview 
                         {{ strpos(Route::currentRouteName(), 'tambahSasaran') === 0 ||strpos(Route::currentRouteName(), 'editSasaran') === 0 || strpos(Route::currentRouteName(), 'sasaran') === 0 || strpos(Route::currentRouteName(), 'iku') === 0 || strpos(Route::currentRouteName(), 'renstra') === 0 || strpos(Route::currentRouteName(), 'rkt') === 0 || strpos(Route::currentRouteName(), 'pk') === 0 || strpos(Route::currentRouteName(), 'tambahIku') === 0 || strpos(Route::currentRouteName(), 'editIku') === 0 || strpos(Route::currentRouteName(), 'tambahPk') === 0 || strpos(Route::currentRouteName(), 'editPk') === 0 || strpos(Route::currentRouteName(), 'tambahRkt') === 0 || strpos(Route::currentRouteName(), 'editRkt') === 0 || strpos(Route::currentRouteName(), 'input') === 0 ||  strpos(Route::currentRouteName(), 'tambahInput') === 0 ? 'active' : '' }}
                     ">
+                        <li class="mt-2 nav-item {{ strpos(Route::currentRouteName(), 'Tujuan') === 0 ||strpos(Route::currentRouteName(), 'tambahTujuan') === 0 || strpos(Route::currentRouteName(), 'editTujuan') === 0 ? 'child-active' : '' }}">
+                            <a href="{{route('tujuan')}}" class="item-child">
+                                <p>Tujuan</p>
+                            </a>
+                        </li>
                         <li class="mt-2 nav-item {{ strpos(Route::currentRouteName(), 'tambahSasaran') === 0 ||strpos(Route::currentRouteName(), 'editSasaran') === 0 || strpos(Route::currentRouteName(), 'sasaran') === 0 ? 'child-active' : '' }}">
                             <a href="{{route('sasaran')}}" class="item-child">
                                 <p>Sasaran Strategis</p>

@@ -9,6 +9,7 @@ class Tujuan extends Model
 {
     use HasFactory;
     protected $table = 'tujuan';
+    protected $fillable = ['isi_tujuan'];
 
     public function sasaran()
     {

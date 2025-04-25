@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IkuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\TujuanController;
+use App\Models\Tujuan;
 
 Auth::routes();
 /*
@@ -75,5 +77,13 @@ Route::get('/laporan', [LaporanController::class, 'getLap'])->name('laporan');
 Route::get('/laporan/rekap/{tahun}/bulan', [LaporanController::class, 'getBln'])->name('rekapbulan');
 Route::get('/laporan/rekap/{tahun}/triwulan', [LaporanController::class, 'getTri'])->name('rekaptriwulan');
 Route::get('/laporan/rekap/{tahun}/semester', [LaporanController::class, 'getSem'])->name('rekapsemester');
+
+
+Route::get('/tujuan', [TujuanController::class, 'getTujuan'])->name('tujuan');
+Route::get('/tujuan/tambah', [TujuanController::class, 'addTujuan'])->name('tambahTujuan');
+Route::post('/tujuan', [TujuanController::class, 'store']);
+Route::get('/tujuan/{tujuan}', [TujuanController::class, 'edit'])->name('editTujuan');
+Route::put('/tujuan/{tujuan}', [TujuanController::class, 'update']);
+Route::get('/tujuan/{tujuan}/destroy', [TujuanController::class, 'destroy']);
 
 ?>
