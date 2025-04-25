@@ -45,8 +45,8 @@ class SasaranController extends Controller
         {
             // menyimpan data produk
             Sasaran::create($validated);
-
-            return back()->withInput();
+            $sasarans = Sasaran::all();
+            return view('sasaran', compact('sasarans'));
         }
         catch(Exception $e)
         {
