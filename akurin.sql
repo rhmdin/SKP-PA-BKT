@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 09:57 AM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
+-- Generation Time: Apr 25, 2025 at 01:29 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,8 +32,8 @@ CREATE TABLE `detail_iku` (
   `id_iku` bigint(20) UNSIGNED NOT NULL,
   `tahun` int(11) NOT NULL,
   `target` int(11) NOT NULL,
-  `pihak_satu` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pihak_dua` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pihak_satu` text DEFAULT NULL,
+  `pihak_dua` text DEFAULT NULL,
   `tanggal_ditetapkan` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -61,11 +61,11 @@ INSERT INTO `detail_iku` (`id`, `id_iku`, `tahun`, `target`, `pihak_satu`, `piha
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -78,10 +78,10 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `iku` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_sasaran` bigint(20) UNSIGNED NOT NULL,
-  `jenis` enum('u','p') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isi_iku` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penanggung_jawab` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sumber_data` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis` enum('u','p') NOT NULL,
+  `isi_iku` longtext NOT NULL,
+  `penanggung_jawab` text NOT NULL,
+  `sumber_data` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -91,11 +91,20 @@ CREATE TABLE `iku` (
 --
 
 INSERT INTO `iku` (`id`, `id_sasaran`, `jenis`, `isi_iku`, `penanggung_jawab`, `sumber_data`, `created_at`, `updated_at`) VALUES
-(1, 1, 'u', 'Persentase perkara yang diselesaikan tepat waktu', 'Panitera', 'laporan', NULL, '2023-02-21 00:55:15'),
-(3, 1, 'u', 'afskfn', 'panitera', 'laporan', '2023-01-24 20:48:57', '2023-01-27 02:37:55'),
-(7, 1, 'u', 'aaaaaa', 'aaaaaaaaaa', 'laporan', '2023-01-30 20:36:20', '2023-01-30 20:36:39'),
-(8, 1, 'u', 'qq', 'panitera', 'laporan', '2023-02-14 00:30:39', '2023-02-14 00:30:39'),
-(9, 2, 'u', 'bagus', 'ss', 'laporan', '2023-02-15 20:55:00', '2023-02-15 20:55:00');
+(1, 1, 'u', 'Persentase perkara yang diselesaikan tepat waktu', 'Panitera', 'Laporan Perkara Bulanan', NULL, '2025-04-15 20:59:14'),
+(3, 1, 'u', 'Persentase perkara yang Tidak Mengajukan Upaya Hukum Banding', 'panitera', 'Laporan Perkara Bulanan', '2023-01-24 20:48:57', '2025-04-15 21:00:36'),
+(7, 1, 'u', 'Persentase perkara yang tidak Mengajukan Upaya Hukum  Kasasi', 'Panitera', 'Laporan Perkara Bulanan', '2023-01-30 20:36:20', '2025-04-15 21:00:57'),
+(8, 1, 'u', 'Indek presepsi pencari keadilan yang puas terhadap layanan peradilan', 'Panitera', 'Laporan IKM Triwulanan', '2023-02-14 00:30:39', '2025-04-15 21:01:59'),
+(12, 3, 'u', 'Persentase salinan putusan yang disampaikan ke para pihak tepat waktu', 'Panitera', 'Laporan Perkara Bulanan', '2025-02-20 02:12:22', '2025-04-15 21:02:38'),
+(13, 3, 'u', 'Persentase Perkara yang  diselesaikan melalui mediasi', 'Panitera', 'Laporan Perkara Bulanan', '2025-04-15 20:59:57', '2025-04-15 21:03:24'),
+(14, 4, 'u', 'Persentase perkara prodeo yang diselesaikan', 'Panitera', 'Laporan Perkara Bulanan', '2025-04-15 21:04:01', '2025-04-15 21:04:01'),
+(15, 4, 'u', 'Persentase perkara yang diselesaikan di luar gedung pengadilan', 'Panitera', 'Laporan Perkara Bulanan', '2025-04-15 21:04:19', '2025-04-15 21:04:19'),
+(16, 4, 'u', 'Persentase pencari keadilan golongan tertentu yang mendapat layanan bantuan hukum (Posbakum)', 'Panitera', 'Laporan Perkara Bulanan', '2025-04-15 21:04:37', '2025-04-15 21:04:37'),
+(17, 5, 'u', 'Persentase putusan perkara perdata yang ditindaklanjuti (dieksekusi)', 'Panitera', 'Laporan Perkara Bulanan', '2025-04-15 21:04:53', '2025-04-15 21:04:53'),
+(18, 6, 'p', 'Persentase terlaksananya pengawasan terhadap penyelenggaraan peradilan', 'Wakil Ketua', 'Laporan Tindak Lanjut Hasil Pengawasan', '2025-04-15 21:12:42', '2025-04-15 21:12:42'),
+(19, 6, 'p', 'Persentase pengaduan Masyarakat dan permohonan informasi yang ditindaklanjuti', 'PPID', 'Laporan Permohonan Informasi dan Pengaduan Bulanan', '2025-04-15 21:16:49', '2025-04-15 21:16:49'),
+(20, 6, 'p', 'Nilai indikator kinerja pelaksanaan anggaran program dukungan manajemen', 'Sekretaris', 'Aplikasi Monev PA OMSPAN', '2025-04-15 21:19:04', '2025-04-15 21:19:04'),
+(21, 6, 'p', 'Nilai indikator kinerja pelaksanaan anggaran penegakan dan pelayanan hukum', 'Sekretaris', 'Aplikasi Monev PA OMSPAN', '2025-04-15 21:19:22', '2025-04-15 21:19:22');
 
 -- --------------------------------------------------------
 
@@ -106,7 +115,7 @@ INSERT INTO `iku` (`id`, `id_sasaran`, `jenis`, `isi_iku`, `penanggung_jawab`, `
 CREATE TABLE `input_iku` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_iku` bigint(20) UNSIGNED NOT NULL,
-  `ket_input` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ket_input` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -129,7 +138,7 @@ INSERT INTO `input_iku` (`id`, `id_iku`, `ket_input`, `created_at`, `updated_at`
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -164,8 +173,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -178,12 +187,12 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `pengukuran` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_detail` bigint(20) UNSIGNED NOT NULL,
-  `bulan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bulan` text NOT NULL,
   `input_satu` int(11) NOT NULL,
   `input_dua` int(11) NOT NULL,
-  `sumber_data` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `realisasi` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `capaian` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sumber_data` text NOT NULL,
+  `realisasi` text NOT NULL,
+  `capaian` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -214,11 +223,11 @@ INSERT INTO `pengukuran` (`id`, `id_detail`, `bulan`, `input_satu`, `input_dua`,
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -233,8 +242,8 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `sasaran` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_tujuan` bigint(20) UNSIGNED NOT NULL,
-  `isi_sasaran` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `periode` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isi_sasaran` longtext NOT NULL,
+  `periode` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -245,7 +254,6 @@ CREATE TABLE `sasaran` (
 
 INSERT INTO `sasaran` (`id`, `id_tujuan`, `isi_sasaran`, `periode`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Mewujudkan peradilan yang pasti, transparan dan akuntabel', '2020-2024', NULL, NULL),
-(2, 1, 'abcd', '2020-2024', NULL, NULL),
 (3, 1, 'Meningkatkan efektivitas pengelolaan penyelesaian perkara', '2020-2024', NULL, NULL),
 (4, 1, 'Meningkatnya akses peradilan bagi masyarakat miskin dan terpinggirkan', '2020-2024', NULL, NULL),
 (5, 1, 'Meningkatnya kepatuhan terhadap putusan pengadilan', '2020-2024', NULL, NULL),
@@ -259,7 +267,7 @@ INSERT INTO `sasaran` (`id`, `id_tujuan`, `isi_sasaran`, `periode`, `created_at`
 
 CREATE TABLE `tujuan` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `isi_tujuan` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isi_tujuan` longtext NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -270,7 +278,8 @@ CREATE TABLE `tujuan` (
 
 INSERT INTO `tujuan` (`id`, `isi_tujuan`, `created_at`, `updated_at`) VALUES
 (1, 'Terwujudnya kepercayaan publik atas layanan peradilan melalui proses peradilan yang pasti, transparan dan akuntabel', NULL, NULL),
-(2, 'Terwujudnya Dukungan pelaksanaan tugas Pengadilan Agama Bukittinggi', NULL, NULL);
+(2, 'Terwujudnya Dukungan pelaksanaan tugas Pengadilan Agama Bukittinggi', NULL, NULL),
+(3, 'tujuan tes1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,12 +289,12 @@ INSERT INTO `tujuan` (`id`, `isi_tujuan`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nip` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nip` text NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -295,7 +304,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `nip`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'annisa', 'annisa@gmail.com', '12345', NULL, '$2y$10$oM.yBF2O7Gx7Fi24HCTMZuYy/8shJ4EqbRPvCCvZiS0X1sqFVZSHq', NULL, NULL, NULL);
+(1, 'annisa', 'annisa@gmail.com', '12345', NULL, '$2a$10$RQyMypZ7.3fLdsFmktDUH.JSuS266Sxc7A7DbhXlHifh8PLXM0Aq.', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -396,7 +405,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `iku`
 --
 ALTER TABLE `iku`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `input_iku`
@@ -426,13 +435,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `sasaran`
 --
 ALTER TABLE `sasaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tujuan`
 --
 ALTER TABLE `tujuan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
